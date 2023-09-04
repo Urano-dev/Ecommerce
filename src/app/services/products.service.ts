@@ -1,10 +1,24 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment.dev';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
-  url=environment._urlApi
-  constructor() { }
+
+  URL_API=environment._urlApi
+
+
+  constructor(private http:HttpClient) { }
+
+
+  public getAll():Observable<any[]>{
+    return this.http.get<any>(this.URL_API + 'products')
+  }
+  public create( product:any ){
+    return this.http.post<any>(this.URL_API + 'products', product)
+  }
+  
 }
