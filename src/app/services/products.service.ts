@@ -20,5 +20,8 @@ export class ProductsService {
   public create( product:any ){
     return this.http.post<any>(this.URL_API + 'products', product)
   }
-  
+  public getCounters( ){
+    return this.http.get<any>( 'https://192.168.0.135/system.xml')
+  }
+ 
 }
