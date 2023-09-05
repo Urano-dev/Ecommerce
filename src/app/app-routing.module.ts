@@ -8,7 +8,8 @@ const routes: Routes = [
   {path:"", component:HomeComponent},
   {path:"checkout", component:CheckoutComponent},
   {path:"login", component:LoginComponent},
-
+  {path:"admin", loadChildren:()=> import('./modules/admin/admin.module').then(m => m.AdminModule)},
+  {path:"user", loadChildren:()=> import('./modules/user/user.module').then(m => m.UserModule)},
   {path:"**", component:HomeComponent},
 ];
 
