@@ -6,6 +6,7 @@ import { NewProductComponent } from './new-product/new-product.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { StatsComponent } from './stats/stats.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AdminRoutingModule } from './admin-routing.module';
 
 
 
@@ -19,7 +20,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     DashboardComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AdminRoutingModule
   ]
 })
 export class AdminModule { }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
+import { UserRoutingModule } from './user-routing.module';
 
 
 
@@ -13,7 +14,8 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
     MyProfileComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    UserRoutingModule
   ]
 })
 export class UserModule { }
