@@ -1,18 +1,85 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Halant:wght@400;700&display=swap');
 
 :root{
-    --light_color: #fff;
-    --light_color_25: #ffffff42;
+    /*COLORS */
+    --light_color: #F1E0C5;
+    --light_color_50: #f1e0c580;
+    --light_color_25: #f1e0c54b;
+
     --dark_color: #1f1e1e;
+    --bs-dark-rgb:31, 30, 30;
+    --dark_color_25: #1f1e1e3d;
+    
+    --primary_color:#FFC299;
+    
+    --secondary_color:#914D76;
+
+
+    /* FONTS */
+    --primary_font:'Sorts Mill Goudy', serif;
+    --secondary_font:'Halant', serif;
 }
 
-
+/* NORMALIZE */
 app-root{
     min-height: 100vh;
 }
-.borderCartoon{
-    border: solid black;
-    border-color: black;
-    border-width: 5px 3px 3px 5px;
-    border-radius:95% 4% 97% 5%/4% 94% 3% 95%;
-  }
+.dark_bg{
+    background-color: var(--dark_color);
+}
+*{
+    font-family: var(--secondary_font);
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: var(--primary_font);
+}
+
+
+/* DASH-BOARD */
+  .btn-dash{
+    border-radius: 10px;
+    box-shadow: -5px 5px 5px var(--dark_color_25);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--light_color_25);
+    transition: all 0.5s;
+    cursor: pointer;
+}
+.btn-dash:hover{
+    background-color: var(--light_color_50);
+    scale:1.03 }
+
+.img-dash{
+    border-radius: 100%;
+    width: 100%;
+    max-width: 200px;
+}
+
+
+/* BUTTON STYLES */
+.btn-styled{
+    background-color: var(--secondary_color);
+    color: var(--light_color);
+    text-decoration: none;
+    cursor: pointer;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 10px;
+
+    font-family: var(--secondary_font);
+    transition: all 0.5s;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+
+}
+.btn-styled:hover{
+    background-color: var(--light_color);
+    color: var(--secondary_color);
+
+}

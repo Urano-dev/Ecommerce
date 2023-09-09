@@ -1,1 +1,12 @@
-<p>details works!</p>
+<main *ngIf="data" class="d-flex justify-content-center">
+    <section class="details-container row">
+        <div class="col">
+            <img [src]="data.img" alt="">
+        </div>
+        <div class="col">
+           <h1>{{data.name}}</h1>
+           <p>{{data.description}}</p>
+           <span>$ {{data.cost}}</span>
+        </div>
+    </section>
+</main>

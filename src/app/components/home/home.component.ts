@@ -16,11 +16,5 @@ export class HomeComponent implements OnInit {
       res=>{this.products=res; console.log(res)},
       err=>{console.log(err)}
     )
-
-
-    this._products.getCounters().subscribe(
-      res=>{console.log(res)},
-      err=>{console.log(err)}
-    )
   }
 }

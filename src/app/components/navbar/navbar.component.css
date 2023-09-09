@@ -1,3 +1,24 @@
 nav{
     min-height: 10vh;
+    color: white;
 }
+
+.dropdown:hover>.dropdown-menu {
+    display: block;
+    position: absolute
+  }
+
+  .navbar-logo{
+    max-width: 120px;
+    cursor: pointer;
+  }
+
+  .fa-xl{
+    line-height: 1.5;
+    vertical-align: middle;
+  }
+
+  .active-link{
+    font-weight: bold;
+    border-bottom: var(--light_color) 2px solid;
+  }
