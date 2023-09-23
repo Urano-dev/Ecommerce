@@ -1,1 +1,67 @@
-<p>new-product works!</p>
+<section>
+    <section [ngClass]="{'blur': sending}" class="container m-auto">
+
+
+
+        <form (ngSubmit)="onCreate()" ngNativeValidate #f="ngForm" [formGroup]="newProductForm" class=" row">
+
+            <div class="col-12 col-sm-4">
+
+                <label class="custom-file-upload img-card d-flex">
+                    <i class="fa-solid fa-pencil"></i>
+                    <input type="file" (change)="seleccionarImagen($event)">
+                    <img [src]="newProductForm.value.img? 'newProductForm.value.img' : 'https://cdn3.iconfinder.com/data/icons/graphic-and-web-design/64/PACKAGING_DESIGN-1024.png'"
+                        class="img-fluid rounded-start" alt="Foto de producto">
+                </label>
+            </div>
+
+            <div class="col-12 col-sm-8">
+                <h2 class="mb-3">Nuevo Producto</h2>
+
+                <input class="form-control campo-form" type="text" placeholder="Name" aria-label="name" name="name"
+                    formControlName="name" required>
+
+                <input class="form-control campo-form" type="text" placeholder="Description" aria-label="description"
+                    name="description" formControlName="description" required>
+
+                <input class="form-control campo-form" type="text" placeholder="Brand Name" aria-label="brand"
+                    name="brand" formControlName="brand" required>
+
+                <input class="form-control campo-form" type="number" placeholder="Stock" aria-label="stock" name="stock"
+                    formControlName="stock" required>
+
+                <input class="form-control campo-form" type="number" placeholder="cost" aria-label="cost" name="cost"
+                    formControlName="cost" required>
+
+
+
+                    <button type="submit" class="btn-styled mt-3" (click)="onCreate()">Generar Producto</button>
+
+            </div>
+
+
+
+
+        </form>
+    </section>
+
+
+
+
+
+
+    <div class="screen spinner-screen" *ngIf="sending">
+        SPINNER
+    </div>
+
+    <div class="screen wait-screen animate__animated animate__bounceIn" *ngIf="received">
+        <p>Curso creado con éxito!</p>
+        <button class="btn button">Volver a Cursos</button>
+    </div>
+
+    <div class="screen wait-screen animate__animated animate__bounceIn" *ngIf="error.error">
+        <p>¡Error al crear Curso!</p>
+        <p><i>{{error.message}}</i></p>
+        <button class="btn button" (click)="reintentar()">Volver a intentar</button>
+    </div>
+</section>
