@@ -26,13 +26,12 @@ export class DetailsComponent implements OnInit  {
     )
   }
 
-
-  getProduct(id:any){
-    
+  getProduct(id:any){ 
     this._data.getOne(id).subscribe(
       res=>{this.data=res
         console.log(this.data) 
       }
     )
   }
+  addToCart(id:any){}
 }

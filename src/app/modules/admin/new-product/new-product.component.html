@@ -10,7 +10,7 @@
                 <label class="custom-file-upload img-card d-flex">
                     <i class="fa-solid fa-pencil"></i>
                     <input type="file" (change)="seleccionarImagen($event)">
-                    <img [src]="newProductForm.value.img? 'newProductForm.value.img' : 'https://cdn3.iconfinder.com/data/icons/graphic-and-web-design/64/PACKAGING_DESIGN-1024.png'"
+                    <img [src]=" newProductForm.value.img? newProductForm.value.img : 'https://cdn3.iconfinder.com/data/icons/graphic-and-web-design/64/PACKAGING_DESIGN-1024.png'"
                         class="img-fluid rounded-start" alt="Foto de producto">
                 </label>
             </div>
@@ -35,7 +35,7 @@
 
 
 
-                    <button type="submit" class="btn-styled mt-3" (click)="onCreate()">Generar Producto</button>
+                    <button type="submit" class="btn-styled mt-3">Generar Producto</button>
 
             </div>
 

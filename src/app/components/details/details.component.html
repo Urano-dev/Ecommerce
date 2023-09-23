@@ -1,12 +1,15 @@
 <main *ngIf="data" class="d-flex justify-content-center">
     <section class="details-container row">
-        <div class="col">
-            <img [src]="data.img" alt="">
+        <div class="col-12 col-sm-6 col-md-4">
+            <img [src]="data.img" alt="" class="img-fluid">
         </div>
-        <div class="col">
+        <div class="col-12 col-sm-6 col-md-8">
            <h1>{{data.name}}</h1>
            <p>{{data.description}}</p>
-           <span>$ {{data.cost}}</span>
+           <p>$ {{data.cost}}</p>
+           <input type="number" name="quantity" min=0 [max]="data.stock">
+           <button (click)="addToCart(data.id)" class="btn-styled py-1" >Add to Cart</button>
         </div>
+
     </section>
 </main>

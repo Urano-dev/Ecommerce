@@ -47,12 +47,14 @@ export class NewProductComponent implements OnInit{
   // CREAR
 onCreate(){
   this.sending=true
-  const dataForm = this.newProductForm.value()
-  
+  const dataForm = this.newProductForm.value
   if(!dataForm.img){
-    dataForm.form.img ='https://cdn3.iconfinder.com/data/icons/graphic-and-web-design/64/PACKAGING_DESIGN-1024.png'
+    dataForm.img ='https://cdn3.iconfinder.com/data/icons/graphic-and-web-design/64/PACKAGING_DESIGN-1024.png'
   }
-  this._products.create(dataForm)
+ this._products.create(dataForm).subscribe(
+  res => { console.log(res)},
+  err => console.error(err)
+ )
 
 }
 
