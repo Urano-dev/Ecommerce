@@ -81,8 +81,8 @@
     </div> -->
 
     <div class="navbar-login d-none d-md-flex flex-wrap justify-content-center align-content-center">
-      <a class="btn-styled" routerLink="login">Login</a>
-      <i class="fa-solid fa-cart-shopping fa-xl"></i>
+      <a class="btn-styled" routerLink="login" *ngIf="!isLogged">Login</a>
+      <i class="fa-solid fa-cart-shopping fa-xl" *ngIf="isLogged"></i>
     </div>
 
     <div class="navbar-mobile d-flex flex-wrap justify-content-center align-content-center d-md-none">

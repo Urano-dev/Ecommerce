@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    _urlApi: 'https://ecommerce-api-b642-dev.fl0.io/api/',
+    _urlApi: 'https://lmq8xcqc-3000.brs.devtunnels.ms/api/',
     cloudinary: {
         cloudName: 'dvqbmq5cn',
         apiKey: '579512475151273',

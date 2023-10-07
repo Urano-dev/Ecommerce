@@ -1,15 +1,19 @@
 <main class="form-signin w-100 m-auto">
-    <form>
+    <form (ngSubmit)="onLogin()" [formGroup]="loginForm">
       <img class="mb-4" src="https://www.360webdesigns.com/wp-content/uploads/2016/07/Services_ECommerce_v2-01.png" alt="" width="72" >
       <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
   
-      <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <div class="form-floating my-2">
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="email_address" [class.is-invalid]="loginForm.controls['email_address'].errors && loginForm.controls['email_address'].touched">
         <label for="floatingInput">Email address</label>
+        
       </div>
-      <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <div class="d-flex form-floating my-2">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password" [class.is-invalid]="loginForm.controls['password'].errors && loginForm.controls['password'].touched">
         <label for="floatingPassword">Password</label>
+        <button id="show_password"
+        class="input-group-text btn btn-dark border border-white" type="button"
+        (click)="mostrarPassword()"><span id="showPass" class="fa-solid fa-eye-slash"></span></button>
       </div>
   
       <!-- <div class="form-check text-start my-3">
@@ -19,6 +23,7 @@
         </label>
       </div> -->
       <button class="btn-styled w-100 py-2 border-0 mt-3" type="submit">Sign in</button>
+      <a routerLink="reset-password">Olvidé mi contraseña</a>
 
     </form>
   </main>

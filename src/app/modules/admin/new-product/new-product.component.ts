@@ -59,7 +59,7 @@ onCreate(){
 }
 
 // LOGICA CLOUDINARY
-  seleccionarImagen(event:any){
+selectImg(event:any){
     const file:File = event.target.files[0];
     this.UploadToCloudinary(file)
   }

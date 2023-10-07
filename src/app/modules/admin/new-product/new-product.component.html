@@ -9,14 +9,14 @@
 
                 <label class="custom-file-upload img-card d-flex">
                     <i class="fa-solid fa-pencil"></i>
-                    <input type="file" (change)="seleccionarImagen($event)">
+                    <input type="file" (change)="selectImg($event)">
                     <img [src]=" newProductForm.value.img? newProductForm.value.img : 'https://cdn3.iconfinder.com/data/icons/graphic-and-web-design/64/PACKAGING_DESIGN-1024.png'"
                         class="img-fluid rounded-start" alt="Foto de producto">
                 </label>
             </div>
 
             <div class="col-12 col-sm-8">
-                <h2 class="mb-3">Nuevo Producto</h2>
+                <h2 class="mb-3">New Product</h2>
 
                 <input class="form-control campo-form" type="text" placeholder="Name" aria-label="name" name="name"
                     formControlName="name" required>
@@ -33,14 +33,9 @@
                 <input class="form-control campo-form" type="number" placeholder="cost" aria-label="cost" name="cost"
                     formControlName="cost" required>
 
-
-
-                    <button type="submit" class="btn-styled mt-3">Generar Producto</button>
+                    <button type="submit" class="btn-styled mt-3">Create Product</button>
 
             </div>
-
-
-
 
         </form>
     </section>
@@ -55,12 +50,12 @@
     </div>
 
     <div class="screen wait-screen animate__animated animate__bounceIn" *ngIf="received">
-        <p>Curso creado con éxito!</p>
-        <button class="btn button">Volver a Cursos</button>
+        <p>Product Created!</p>
+        <button class="btn button">Go back!</button>
     </div>
 
     <div class="screen wait-screen animate__animated animate__bounceIn" *ngIf="error.error">
-        <p>¡Error al crear Curso!</p>
+        <p>¡Error!</p>
         <p><i>{{error.message}}</i></p>
         <button class="btn button" (click)="reintentar()">Volver a intentar</button>
     </div>

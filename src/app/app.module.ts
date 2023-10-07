@@ -18,6 +18,7 @@ import { AboutComponent } from './components/about/about.component';
 import { CartComponent } from './components/cart/cart.component';
 import { DetailsComponent } from './components/details/details.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { SignupComponent } from './components/signup/signup.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    BrowserAnimationsModule,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

@@ -8,7 +8,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import {MatSortModule} from '@angular/material/sort';
+import {MatTableModule} from '@angular/material/table';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @NgModule({
@@ -25,6 +28,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AdminRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    MatSortModule,
+    MatTableModule,
+    MatInputModule,
+    MatFormFieldModule
   ]
 })
 export class AdminModule { }
