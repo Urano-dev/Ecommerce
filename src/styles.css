@@ -33,6 +33,7 @@ app-root{
 }
 h1,h2,h3,h4,h5,h6{
     font-family: var(--primary_font);
+    
 }
 .text-justify {
     text-align: justify;
@@ -73,11 +74,12 @@ h1,h2,h3,h4,h5,h6{
     padding-left: 1rem;
     padding-right: 1rem;
     border-radius: 10px;
-border:none;
+    border:none;
     font-family: var(--secondary_font);
     transition: all 0.5s;
     margin-left: 0.25rem;
     margin-right: 0.25rem;
+    text-transform: uppercase;
 
 }
 .btn-styled:hover{

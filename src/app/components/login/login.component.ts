@@ -9,13 +9,15 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent {
   loginForm: FormGroup
-
+  isLogged:boolean
 
 constructor(private fb: FormBuilder, private _auth:AuthService){
   this.loginForm= this.fb.group({
     email_address:['', [Validators.required]],
     password:['', [Validators.required]]
   })
+
+  this.isLogged=_auth.getLogged()
 }
 
 
@@ -24,11 +26,14 @@ onLogin(){
   this._auth.login(this.loginForm.value).subscribe(
     res => {
       this._auth.setIsLogged(true)
-      //window.location.reload();
+      this.isLogged=this._auth.getLogged()
+      window.location.reload();
     }, // guardar la info en una cookie
     err => alert(err.message)
   )
 }
+
+
 mostrarPassword(){
   let cambio  = document.getElementById("floatingPassword") as HTMLInputElement;
     let showPass  = document.getElementById("showPass") as HTMLElement

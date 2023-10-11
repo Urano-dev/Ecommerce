@@ -9,11 +9,11 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   
   url=environment._urlApi
-  isLogged!:boolean
+  isLogged:boolean
 
 
   constructor(private http:HttpClient) { 
-    
+    this.isLogged=false
   }
 
   public setIsLogged(bool:boolean){
@@ -21,6 +21,7 @@ export class AuthService {
     this.isLogged = bool
     console.log(this.isLogged)
   }
+  
   public getLogged() {
     return this.isLogged
   }
