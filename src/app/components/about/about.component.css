@@ -1,3 +1,7 @@
 :root {
     --animate-delay: 0.1s;
   }
+
+  .clients-section{
+    background-color: var(--dark_color);
+  }

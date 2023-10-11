@@ -5,9 +5,11 @@
     background-size: cover;
 }
 .banner_box{
-    background-color: var(--light_color_25);
+    background-color: var(--light_color_50);
     width: 100%;
     min-height: 150px;
+	color: var(--dark_color);
+	cursor:auto;
 }
 
 .banner_img{
