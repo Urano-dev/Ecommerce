@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -12,15 +13,15 @@ export class AuthService {
   isLogged:boolean
 
 
-  constructor(private http:HttpClient) { 
-    this.isLogged=false
+  constructor(private http:HttpClient, private _cookie:CookieService) {
+    this.isLogged=  this._cookie.check('token')
   }
 
-  public setIsLogged(bool:boolean){
-    console.log(bool)
-    this.isLogged = bool
-    console.log(this.isLogged)
-  }
+public updateLogin(){
+  this.isLogged=  this._cookie.check('token')
+  return this.isLogged
+}
+
   
   public getLogged() {
     return this.isLogged
@@ -34,5 +35,13 @@ export class AuthService {
     return this.http.post<any>(this.url + 'users/login', user)
   }
 
+  public logout():Observable<any>{
+    this._cookie.deleteAll('/')
+    this.updateLogin()
+    return this.http.get<any>(this.url + 'users/logout')
+  }
 
+  public signup(newUser:any):Observable<any>{
+    return this.http.post<any>(this.url + 'users/login', newUser)
+  }
 }

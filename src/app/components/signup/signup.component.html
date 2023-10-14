@@ -1,1 +1,85 @@
-<p>signup works!</p>
+<div class="row mt-4 " [ngClass]="{'blur': sending}">
+    <div class="col-12 col-sm-8 col-lg-8 offset-sm-2 offset-lg-2">
+        <h2>New User</h2>
+
+        <form action="" #f='ngForm' id="formUser" [formGroup]='formUser'>
+
+            <input class="form-control campo-form" type="email" placeholder="E-mail" aria-label="email" name="email"
+                formControlName="email" required>
+
+            <input class="form-control campo-form" type="text" placeholder="Username" aria-label="username"
+                name="username" formControlName="username" required>
+
+            <div class="input-group campo-form">
+                <input class="form-control " type="password" placeholder="Password" aria-label="password"
+                    minlength=6 name="password" formControlName="password" id="floatingPassword" required> <button
+                    id="show_password" class="input-group-text btn btn-dark border border-white" type="button"
+                    (click)="showPassword()"><span id="showPass" class="fa-solid fa-eye-slash"></span></button>
+            </div>
+
+
+            <div class="section-form">
+                <input class="form-control campo-form" type="text" placeholder="First name" aria-label="firstname"
+                    name="firstname" formControlName="firstname" required>
+
+                <input class="form-control campo-form" type="text" placeholder="Last name" aria-label="lastname"
+                    name="lastname" formControlName="lastname" required>
+
+                <input class="form-control campo-form" placeholder="Birth Date" aria-label="dateBirth"
+                    name="dateBirth" formControlName="dateBirth" required onfocus="this.type='date'"
+                    onblur="if(!this.value) this.type='text'">
+
+                <input class="form-control campo-form" type="text" placeholder="D.N.I." aria-label="dni" name="dni"
+                    formControlName="dni" required>
+
+                <input class="form-control campo-form" type="text" placeholder="Phone number" aria-label="telephone"
+                    name="telephone" formControlName="telephone" required>
+
+                <input class="form-control campo-form" type="text" placeholder="Home adress" aria-label="homeAdress"
+                    name="homeAdress" formControlName="homeAdress" required>
+
+                <input class="form-control campo-form" type="text" placeholder="Country" aria-label="country"
+                    name="country" formControlName="country" required>
+
+                <input class="form-control campo-form" type="text" placeholder="State" aria-label="state"
+                    name="state" formControlName="state" required>
+
+                <input class="form-control campo-form" type="text" placeholder="City" aria-label="city"
+                    name="city" formControlName="city" required>
+                <input class="form-control campo-form" type="text" placeholder="zipCode" aria-label="zipCode"
+                    name="zipCode" formControlName="zipCode" required>
+            </div>
+
+            <div>
+                <label for="terms">
+                    <input type="checkbox" name="terms" id="terms" formControlName="terms">
+                    Acept <button mat-button (click)="openDialog()" class="terms">Terms & Conditions</button>
+                </label>
+            </div>
+
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3 btn-form button" [disabled]="formUser.invalid"
+                    (click)="onCreate()">Sign Up</button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<div class="screen spinner-screen" *ngIf="sending">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div class="screen wait-screen animate__animated animate__bounceIn" *ngIf="received">
+    <p>Successfully created user!</p>
+    <button class="btn button" routerLink="../" *ngIf="!isAdmin">Go to Login</button>
+</div>
+
+<div class="screen wait-screen animate__animated animate__bounceIn" *ngIf="error.error">
+    <p>Error creating user!</p>
+    <p><i>{{error.message}}</i></p>
+    <button class="btn button" (click)="reintentar()">Try again</button>
+</div>

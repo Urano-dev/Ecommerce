@@ -1,4 +1,4 @@
-<main class="form-signin w-100 m-auto">
+<main class="form-signin w-100 m-auto" *ngIf="!isLogged">
     <form (ngSubmit)="onLogin()" [formGroup]="loginForm">
       <img class="mb-4" src="https://www.360webdesigns.com/wp-content/uploads/2016/07/Services_ECommerce_v2-01.png" alt="" width="72" >
       <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
@@ -22,8 +22,8 @@
           Remember me
         </label>
       </div> -->
-      <button class="btn-styled w-100 py-2 border-0 mt-3" type="submit">Sign in</button>
-      <a routerLink="reset-password">Olvidé mi contraseña</a>
-
+      <button class="btn-styled w-100 p-0 m-0 py-2 border-0 my-3" type="submit">Sign in</button>
+      
     </form>
+    <a routerLink="reset-password" class="text-center">Forgot my password</a>
   </main>

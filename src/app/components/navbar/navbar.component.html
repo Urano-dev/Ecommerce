@@ -47,10 +47,7 @@
           <a class="nav-link" routerLinkActive="active-link" aria-current="page" routerLink="" [routerLinkActiveOptions]="{exact:
             true}">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active-link" aria-current="page" routerLink="about">About Us</a>
-        </li>
-
+        
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" routerLinkActive="active-link" routerLink="shop" aria-expanded="false">Shop</a>
           <ul class="dropdown-menu">
@@ -58,6 +55,15 @@
             <li><a class="dropdown-item" routerLink="shop/categoria2">Categoría 2</a></li>
             <li><a class="dropdown-item" routerLink="shop/categoria2">Categoría 3</a></li>
           </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active-link" aria-current="page" routerLink="about">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active-link" aria-current="page" routerLink="admin">Admin</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active-link" aria-current="page" routerLink="user">User</a>
         </li>
         <li class="nav-item ms-5">
           
@@ -83,6 +89,7 @@
     <div class="navbar-login d-none d-md-flex flex-wrap justify-content-center align-content-center">
       <a class="btn-styled" routerLink="login" *ngIf="!isLogged">Login</a>
       <i class="fa-solid fa-cart-shopping fa-xl" *ngIf="isLogged"></i>
+      <a class="btn-styled" *ngIf="isLogged" (click)="logout()">Logout</a>
     </div>
 
     <div class="navbar-mobile d-flex flex-wrap justify-content-center align-content-center d-md-none">

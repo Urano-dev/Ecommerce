@@ -19,6 +19,10 @@ import { CartComponent } from './components/cart/cart.component';
 import { DetailsComponent } from './components/details/details.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
+import { TermsComponent } from './components/terms/terms.component';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +36,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AboutComponent,
     CartComponent,
     DetailsComponent,
-    SignupComponent
+    SignupComponent,
+    TermsComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +47,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     RouterModule,
     BrowserAnimationsModule,
+    MatProgressSpinnerModule,
+    MatDialogModule,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
