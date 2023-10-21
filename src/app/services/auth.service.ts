@@ -42,6 +42,6 @@ public updateLogin(){
   }
 
   public signup(newUser:any):Observable<any>{
-    return this.http.post<any>(this.url + 'users/login', newUser)
+    return this.http.post<any>(this.url + 'users/signup', newUser)
   }
 }

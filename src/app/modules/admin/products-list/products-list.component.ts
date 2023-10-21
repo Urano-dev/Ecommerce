@@ -15,7 +15,7 @@ export class ProductsListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'brand', 'cost', 'stock','createdAt', 'edit'];
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatSort) sort!: MatSort;
-
+  waiting:Boolean=true
   products!:Array<any>
 
   constructor( private _products:ProductsService){}
@@ -23,6 +23,7 @@ export class ProductsListComponent implements OnInit {
   ngOnInit(): void {
     this._products.getAll().subscribe(
       res=>{ console.log(res)
+        this.waiting=false
       this.products=res.sort((a:any, b:any) => a.id - b.id)
       // TABLA DE MATERIAL
       this.dataSource = new MatTableDataSource(this.products);

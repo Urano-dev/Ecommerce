@@ -26,5 +26,8 @@ export class ProductsService {
     return this.http.post<any>(this.URL_API + 'products', product)
   }
   
+  public updateOne(productUpd:any, id:string){
+    return this.http.patch<any>(this.URL_API+`products/${id}`, productUpd)
+  }
 
 }

@@ -1,64 +1,101 @@
-<div class="row mt-4 " [ngClass]="{'blur': sending}">
-    <div class="col-12 col-sm-8 col-lg-8 offset-sm-2 offset-lg-2">
-        <h2>New User</h2>
+<div class="row m-0 mt-4 justify-content-center" [ngClass]="{'blur': sending}">
+    <div class="col-11 col-sm-8 col-lg-8 offset-sm-2 offset-lg-2 row m-0 justify-content-center">
+        <h2 class="px-0" >New User</h2>
 
-        <form action="" #f='ngForm' id="formUser" [formGroup]='formUser'>
+        <form action="" #f='ngForm' id="formUser" [formGroup]='formUser' class="row mx-0 px-0 g-0">
 
-            <input class="form-control campo-form" type="email" placeholder="E-mail" aria-label="email" name="email"
-                formControlName="email" required>
-
-            <input class="form-control campo-form" type="text" placeholder="Username" aria-label="username"
-                name="username" formControlName="username" required>
-
-            <div class="input-group campo-form">
-                <input class="form-control " type="password" placeholder="Password" aria-label="password"
-                    minlength=6 name="password" formControlName="password" id="floatingPassword" required> <button
-                    id="show_password" class="input-group-text btn btn-dark border border-white" type="button"
-                    (click)="showPassword()"><span id="showPass" class="fa-solid fa-eye-slash"></span></button>
+            
+            <div class="form-floating my-2 p-1 col-12 col-lg-6">
+                <input class="form-control campo-form" type="text" aria-label="username" name="username"
+                formControlName="username" required>
+                <label for="username">Username</label>
+            </div>
+            
+            <div class="d-flex form-floating my-2 p-1 col-12 col-lg-6">
+                <input class="form-control " type="password" aria-label="password" minlength=6 name="password"
+                formControlName="password" id="floatingPassword" required> <button id="show_password"
+                class="input-group-text btn btn-dark border border-white" type="button" (click)="showPassword()">
+                <span id="showPass" class="fa-solid fa-eye-slash"></span></button>
+                <label for="password">Password</label>
+            </div>
+            
+            <div class="form-floating my-2 p-1 col-12 col-lg-6">
+                <input class="form-control campo-form" type="text" aria-label="firstname" name="firstname"
+                    formControlName="firstname" required>
+                <label for="firstname">First name</label>
             </div>
 
+            <div class="form-floating my-2 p-1 col-12 col-lg-6">
+                <input class="form-control campo-form" type="text" aria-label="lastname" name="lastname"
+                    formControlName="lastname" required>
+                <label for="lastname">Last name</label>
+            </div>
+            <div class="form-floating my-2 p-1 col-12 col-lg-6 ">
+                <input class="form-control " type="email" aria-label="email" name="email" formControlName="email"
+                    id="floatingInput" required>
+                <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating my-2 p-1 col-12 col-lg-6">
+                <input class="form-control campo-form" type="text" aria-label="telephone" name="telephone"
+                    formControlName="telephone" required>
+                <label for="telephone">Phone number</label>
+            </div>
 
-            <div class="section-form">
-                <input class="form-control campo-form" type="text" placeholder="First name" aria-label="firstname"
-                    name="firstname" formControlName="firstname" required>
-
-                <input class="form-control campo-form" type="text" placeholder="Last name" aria-label="lastname"
-                    name="lastname" formControlName="lastname" required>
-
-                <input class="form-control campo-form" placeholder="Birth Date" aria-label="dateBirth"
-                    name="dateBirth" formControlName="dateBirth" required onfocus="this.type='date'"
+            <div class="form-floating my-2 p-1 col-12 col-lg-6">
+                <input class="form-control campo-form" aria-label="dateBirth" name="dateBirth"
+                    formControlName="dateBirth" required onfocus="this.type='date'"
                     onblur="if(!this.value) this.type='text'">
-
-                <input class="form-control campo-form" type="text" placeholder="D.N.I." aria-label="dni" name="dni"
-                    formControlName="dni" required>
-
-                <input class="form-control campo-form" type="text" placeholder="Phone number" aria-label="telephone"
-                    name="telephone" formControlName="telephone" required>
-
-                <input class="form-control campo-form" type="text" placeholder="Home adress" aria-label="homeAdress"
-                    name="homeAdress" formControlName="homeAdress" required>
-
-                <input class="form-control campo-form" type="text" placeholder="Country" aria-label="country"
-                    name="country" formControlName="country" required>
-
-                <input class="form-control campo-form" type="text" placeholder="State" aria-label="state"
-                    name="state" formControlName="state" required>
-
-                <input class="form-control campo-form" type="text" placeholder="City" aria-label="city"
-                    name="city" formControlName="city" required>
-                <input class="form-control campo-form" type="text" placeholder="zipCode" aria-label="zipCode"
-                    name="zipCode" formControlName="zipCode" required>
+                <label for="password">Birth Date</label>
+            </div>
+            
+            <div class="form-floating my-2 p-1 col-12 col-lg-6">
+                <input class="form-control campo-form" type="text" aria-label="dni" name="dni" formControlName="dni"
+                    required>
+                <label for="dni">D.N.I.</label>
             </div>
 
-            <div>
+            <div class="form-floating my-2 p-1 col-12 col-md-6 col-lg-8">
+            <input class="form-control campo-form" type="text" aria-label="homeAdress"
+                name="homeAdress" formControlName="homeAdress" required>
+                <label for="homeAdress">Home adress</label>
+            </div>
+
+                <div class="form-floating my-2 p-1 col-12 col-md-6 col-lg-4">
+            <input class="form-control campo-form" type="text" aria-label="country" name="country"
+                formControlName="country" required>
+                <label for="country">Country</label>
+            </div>
+
+                <div class="form-floating my-2 p-1 col-12 col-md-6 col-lg-4">
+            <input class="form-control campo-form" type="text" aria-label="state" name="state"
+                formControlName="state" required>
+                <label for="state">State</label>
+            </div>
+
+                <div class="form-floating my-2 p-1 col-12 col-md-6 col-lg-4">
+            <input class="form-control campo-form" type="text" aria-label="city" name="city"
+                formControlName="city" required>
+                <label for="city">City</label>
+            </div>
+
+            <div class="form-floating my-2 p-1 col-12 col-md-6 col-lg-4">
+            <input class="form-control campo-form" type="text" aria-label="zipCode" name="zipCode"
+                formControlName="zipCode" required>
+                <label for="zipCode">Zip Code</label>
+            </div>
+
+
+
+            <div class="col-6 d-flex justify-content-center align-items-center">
                 <label for="terms">
                     <input type="checkbox" name="terms" id="terms" formControlName="terms">
-                    Acept <button mat-button (click)="openDialog()" class="terms">Terms & Conditions</button>
+                    Accept <button mat-button (click)="openDialog()" class="terms">Terms &
+                        Conditions</button>
                 </label>
             </div>
 
-            <div class="col-auto">
-                <button type="submit" class="btn btn-primary mb-3 btn-form button" [disabled]="formUser.invalid"
+            <div class="col-6 my-4">
+                <button type="submit" class="btn-styled w-100" [disabled]="formUser.invalid"
                     (click)="onCreate()">Sign Up</button>
 
             </div>
@@ -81,5 +118,5 @@
 <div class="screen wait-screen animate__animated animate__bounceIn" *ngIf="error.error">
     <p>Error creating user!</p>
     <p><i>{{error.message}}</i></p>
-    <button class="btn button" (click)="reintentar()">Try again</button>
+    <button class="btn button" (click)="retry()">Try again</button>
 </div>

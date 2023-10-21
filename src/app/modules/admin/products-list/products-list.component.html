@@ -1,3 +1,6 @@
+<section *ngIf="products[0]">
+
+
 <mat-form-field>
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
@@ -62,4 +65,14 @@
     </table>
   
   </div>
-  
+</section>
+
+<section *ngIf="products && !products[0]">
+  <h4 class="text-center">
+    There is no Products...
+  </h4>
+</section>
+
+<section *ngIf="waiting">
+  Loading...
+</section>

@@ -95,7 +95,7 @@ openDialog() {
 
 
 
-reintentar(){
+retry(){
   this.sending=false
   this.received=false
   this.error.error=false
