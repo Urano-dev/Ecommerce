@@ -1,5 +1,5 @@
 <div class="row m-0 mt-4 justify-content-center" [ngClass]="{'blur': sending}">
-    <div class="col-11 col-sm-8 col-lg-8 offset-sm-2 offset-lg-2 row m-0 justify-content-center">
+    <div class="col-11 col-sm-8 col-lg-8 offset-sm-2 offset-lg-2 row m-0 justify-content-center" *ngIf="formUser">
         <h2 class="px-0" >New User</h2>
 
         <form action="" #f='ngForm' id="formUser" [formGroup]='formUser' class="row mx-0 px-0 g-0">

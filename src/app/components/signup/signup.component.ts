@@ -18,6 +18,7 @@ export class SignupComponent implements OnInit{
   isAdmin:boolean=false
 
   formUser:FormGroup
+  
   errorImg:boolean=false
   
   sending:boolean=false 

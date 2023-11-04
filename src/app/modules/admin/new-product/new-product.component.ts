@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ProductsService } from 'src/app/services/products.service';
 import { CloudinaryServService } from 'src/app/services/cloudinary-serv.service'
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-new-product',
@@ -28,7 +30,8 @@ export class NewProductComponent implements OnInit{
     private _products:ProductsService,
     private _form:FormBuilder,
     private _router:Router,
-    private _cloud:CloudinaryServService) { 
+    private _cloud:CloudinaryServService,
+    public dialog: MatDialog) { 
       this.newProductForm = this._form.group({
         name:['', Validators.required],
         description:['', Validators.required],
@@ -42,7 +45,9 @@ export class NewProductComponent implements OnInit{
 
     
 
-  ngOnInit(): void {  }
+  ngOnInit(): void { 
+    this.openDialog('New product', 'Product successfully created!','OK')
+   }
 
   // CREAR
 onCreate(){
@@ -51,11 +56,18 @@ onCreate(){
   if(!dataForm.img){
     dataForm.img ='https://cdn3.iconfinder.com/data/icons/graphic-and-web-design/64/PACKAGING_DESIGN-1024.png'
   }
- this._products.create(dataForm).subscribe(
-  res => { console.log(res)},
-  err => console.error(err)
- )
 
+ this._products.create(dataForm).subscribe(
+  res => {
+    this.sending=false
+    this.openDialog('New product', 'Product successfully created!','Ok')
+
+    },
+  err => {
+    this.sending=false
+    this.openDialog('Error', err.message, 'retry')
+  }
+ )
 }
 
 // LOGICA CLOUDINARY
@@ -70,13 +82,31 @@ selectImg(event:any){
    
     this._cloud.uploadNewProductPhoto(formData).subscribe(
       res=>{
-        console.log(res)
         this.newProductForm.value.img=res.url
       },
       err=>{ })
     }
 
-    
+openDialog(title:string, message:string, button:string, cb?:any){
+
+      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+          data:{
+            title: title,
+            message:message,
+            button: button
+          }, 
+          maxWidth: '450px'
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        this.reintentar()
+        
+        if(result){
+          cb?cb():''
+        }
+        
+      });
+    }
 
 // *************************************** funcionalidad de botones al finalizar ****************************************
 reintentar(){

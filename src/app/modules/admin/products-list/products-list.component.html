@@ -1,4 +1,7 @@
-<section *ngIf="products[0]">
+<div class="p-3 h-100">
+
+
+<section *ngIf="products" >
 
 
 <mat-form-field>
@@ -39,6 +42,12 @@
           </ng-container>
 
       <!-- CreatedAt Column -->
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+        <td mat-cell *matCellDef="let row"> {{row.category }} </td>
+      </ng-container>
+      
+      <!-- CreatedAt Column -->
       <ng-container matColumnDef="createdAt">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Created </th>
         <td mat-cell *matCellDef="let row"> {{row.createdAt | date:'dd-MM-yyyy'}} </td>
@@ -67,12 +76,15 @@
   </div>
 </section>
 
-<section *ngIf="products && !products[0]">
+<section *ngIf="products && !products[0]" class="d-flex flex-column align-items-center justify-content-center">
   <h4 class="text-center">
     There is no Products...
   </h4>
+  <button class="btn btn-styled my-4" routerLink="../new-product">Create Product</button>
 </section>
 
-<section *ngIf="waiting">
+<section *ngIf="waiting" class="h-100 d-flex justify-content-center align-items-center">
   Loading...
 </section>
+
+</div>

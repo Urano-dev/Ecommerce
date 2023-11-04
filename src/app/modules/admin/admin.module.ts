@@ -13,6 +13,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
+import { SharedModule } from '../shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -25,13 +27,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     AdminRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     MatSortModule,
     MatTableModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
   ]
 })
 export class AdminModule { }

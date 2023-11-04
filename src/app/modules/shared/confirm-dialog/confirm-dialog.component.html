@@ -1,0 +1,12 @@
+
+<div class="header">
+    <h1 mat-dialog-title>{{data.title}}</h1>
+</div>
+<div class="content">
+    <div mat-dialog-content>{{data.message}}</div>
+</div>
+
+<div mat-dialog-actions class="d-flex justify-content-end">
+    <button  mat-dialog-close class="btn-styled_inv py-1">Close</button>
+    <button  [mat-dialog-close]="true"  class="btn-styled py-1" *ngIf="data.button.length>0">{{data.button}}</button>
+</div>

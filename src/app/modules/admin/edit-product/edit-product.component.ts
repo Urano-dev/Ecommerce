@@ -18,7 +18,7 @@ export class EditProductComponent implements OnInit{
      message:''
    }
  
-  editProductForm!:FormGroup
+  editProductForm:FormGroup
   productParam!:string
   dataProduct!:any 
    
@@ -28,7 +28,14 @@ export class EditProductComponent implements OnInit{
     private _form:FormBuilder,
     private _cloud:CloudinaryServService
     ){
-
+      this.editProductForm = this._form.group({
+        name:['', Validators.required],
+        description:['', Validators.required],
+        stock:['', Validators.required],
+        cost:['', Validators.required],
+        brand:['', Validators.required],
+        img:[''],
+      })
     }
 
 
@@ -46,6 +53,7 @@ export class EditProductComponent implements OnInit{
   }
 
   createFormGroup(){
+    console.log(this.dataProduct)
     this.editProductForm = this._form.group({
       name:[this.dataProduct.name, Validators.required],
       description:[this.dataProduct.description, Validators.required],

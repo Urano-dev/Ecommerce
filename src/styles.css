@@ -31,10 +31,20 @@ app-root{
 *{
     font-family: var(--secondary_font);
 }
+
 h1,h2,h3,h4,h5,h6{
     font-family: var(--primary_font);
-    
 }
+.mat-mdc-dialog-container .mdc-dialog__title{
+    font-weight: bold !important;
+    color: var(--light_color) !important;
+    font-family: var(--primary_font) !important;
+}
+.mat-mdc-dialog-container .mdc-dialog__content{
+    font-family: var(--secondary_font) !important;
+}
+
+
 .text-justify {
     text-align: justify;
 }
@@ -83,12 +93,34 @@ h1,h2,h3,h4,h5,h6{
     margin-left: 0.25rem;
     margin-right: 0.25rem;
     text-transform: uppercase;
-
 }
+
 .btn-styled:hover{
     background-color: var(--light_color);
     color: var(--secondary_color);
+}
 
+.btn-styled_inv{
+    background-color: var(--light_color);
+    color: var(--secondary_color);
+    text-decoration: none;
+    cursor: pointer;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 10px;
+    border:none;
+    font-family: var(--secondary_font);
+    transition: all 0.5s;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+    text-transform: uppercase;
+}
+
+.btn-styled_inv:hover{
+    background-color: var(--secondary_color);
+    color: var(--light_color);
 }
 
 
@@ -97,4 +129,32 @@ h1,h2,h3,h4,h5,h6{
 .blur{
     transition: filter 1s;
     filter: blur(2px);
+}
+
+.screen{
+    height: 140px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.confirmation-dialog-panel{
+    max-width: 350px;
+}
+
+.mat-mdc-progress-spinner{
+    height: 50% !important;
+    margin: auto;
+    --mdc-circular-progress-active-indicator-color: var(--secondary_color) !important;
+}
+:focus-visible {
+    outline: none;
 }

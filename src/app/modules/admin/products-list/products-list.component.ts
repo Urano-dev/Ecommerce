@@ -9,10 +9,11 @@ import { ProductsService } from 'src/app/services/products.service';
 @Component({
   selector: 'app-products-list',
   templateUrl: './products-list.component.html',
-  styleUrls: ['./products-list.component.css']
+  styleUrls: ['./products-list.component.css'],
+  host:{class:'flex-grow-1'}
 })
 export class ProductsListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'brand', 'cost', 'stock','createdAt', 'edit'];
+  displayedColumns: string[] = ['id', 'name', 'brand', 'cost', 'stock','createdAt', 'category','edit'];
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatSort) sort!: MatSort;
   waiting:Boolean=true

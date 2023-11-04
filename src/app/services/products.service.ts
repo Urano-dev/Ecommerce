@@ -18,6 +18,20 @@ export class ProductsService {
     return this.http.get<any>(this.URL_API + 'products')
   }
 
+  public getAllLimit(number:number):Observable<any[]>{
+    return this.http.get<any>(this.URL_API + 'products'+`?quantity=${number}`)
+  }
+  
+  public getAllByCategory(categoryId:string):Observable<any[]>{
+    return this.http.get<any>(this.URL_API + 'products'+`?categoryId=${categoryId}`)
+  }
+
+
+  public getLatest(){
+    return this.http.get<any>(this.URL_API + 'products') // FALTA RUTA
+  }
+
+
   public getOne(id:any){
     return this.http.get<any>(this.URL_API + 'products/'+id)
   }
