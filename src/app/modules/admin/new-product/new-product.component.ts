@@ -46,7 +46,7 @@ export class NewProductComponent implements OnInit{
     
 
   ngOnInit(): void { 
-    this.openDialog('New product', 'Product successfully created!','OK')
+  
    }
 
   // CREAR
@@ -109,6 +109,7 @@ openDialog(title:string, message:string, button:string, cb?:any){
     }
 
 // *************************************** funcionalidad de botones al finalizar ****************************************
+
 reintentar(){
   this.sending=false
   this.received=false

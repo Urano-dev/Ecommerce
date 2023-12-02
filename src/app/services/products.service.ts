@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Product } from '../components/models/new-product';
 
 @Injectable({
   providedIn: 'root'
@@ -36,11 +37,11 @@ export class ProductsService {
     return this.http.get<any>(this.URL_API + 'products/'+id)
   }
   
-  public create(product:any ){
+  public create(product:Product ){
     return this.http.post<any>(this.URL_API + 'products', product)
   }
   
-  public updateOne(productUpd:any, id:string){
+  public updateOne(productUpd:Product, id:string){
     return this.http.patch<any>(this.URL_API+`products/${id}`, productUpd)
   }
 
