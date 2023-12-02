@@ -13,11 +13,16 @@ import { ProductsService } from 'src/app/services/products.service';
   host:{class:'flex-grow-1'}
 })
 export class ProductsListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'brand', 'cost', 'stock','createdAt', 'category','edit'];
+  
+  displayedColumns: string[] = ['check', 'id', 'name', 'brand', 'cost', 'stock','createdAt', 'category','edit'];
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatSort) sort!: MatSort;
+  
   waiting:Boolean=true
+  
   products!:Array<any>
+
+  selectedProducts:Array<any> = []
 
   constructor( private _products:ProductsService){}
   
@@ -42,4 +47,7 @@ export class ProductsListComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  check(row:any){
+
+  }
 }

@@ -21,6 +21,8 @@ import { SignupComponent } from './components/signup/signup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 import { TermsComponent } from './components/terms/terms.component';
 
 
@@ -49,6 +51,7 @@ import { TermsComponent } from './components/terms/terms.component';
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
     MatDialogModule,
+    MatCheckboxModule,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

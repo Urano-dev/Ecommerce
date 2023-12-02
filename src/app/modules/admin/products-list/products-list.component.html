@@ -8,10 +8,23 @@
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
   </mat-form-field>
-  
+
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
-        <!-- ID Column -->
+      
+     
+
+      <ng-container matColumnDef="check">
+        <th mat-header-cell *matHeaderCellDef> 
+          <mat-checkbox></mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox></mat-checkbox>
+          
+        </td>
+    </ng-container>
+  
+      <!-- ID Column -->
         <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
             <td mat-cell *matCellDef="let row"> {{row.id}} </td>
@@ -32,7 +45,12 @@
         <!-- Cost Column -->
       <ng-container matColumnDef="cost">
         <th mat-header-cell *matHeaderCellDef> Cost </th>
-        <td mat-cell *matCellDef="let row"> {{row.cost}} </td>
+        <td mat-cell *matCellDef="let row"> 
+          
+          <input type="number" [(ngModel)]="row.cost" (onChange)="check(row)">
+
+        </td>
+
       </ng-container>
   
         <!-- Stock Column -->
@@ -56,10 +74,13 @@
       <!-- Edit Column -->
       <ng-container matColumnDef="edit">
         <th mat-header-cell *matHeaderCellDef> Edit </th>
-        <td mat-cell *matCellDef="let row"> 
-            <button routerLink="../edit-product/{{row.id}}">
+        <td mat-cell *matCellDef="let row" class="gap-2"> 
+            <button routerLink="../edit-product/{{row.id}}" class="btn-styled">
                 <i class="fa-solid fa-pen"></i>
-            </button>    
+            </button>
+            <button routerLink="../edit-product/{{row.id}}" class="btn-styled_inv">
+              <i class="fa-solid fa-trash"></i>
+          </button>        
         </td>
       </ng-container>
 

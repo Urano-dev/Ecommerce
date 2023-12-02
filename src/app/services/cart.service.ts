@@ -52,9 +52,7 @@ export class CartService {
 
 //elimina una unidad al producto
   substractOneProduct(prod:CartProduct){
-
     const prodIndx = this.cart.products.findIndex(product => product.productId == prod.productId)
-
     if (prodIndx != -1){
       this.cart.products[prodIndx].quantity -= 1
     }

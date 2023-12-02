@@ -14,6 +14,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
 import { SharedModule } from '../shared/shared.module';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { SharedModule } from '../shared/shared.module';
     MatTableModule,
     MatInputModule,
     MatFormFieldModule,
+    MatCheckboxModule
   ]
 })
 export class AdminModule { }
