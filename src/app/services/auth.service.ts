@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +42,7 @@ public updateLogin(){
     return this.http.get<any>(this.url + 'users/logout')
   }
 
-  public signup(newUser:any):Observable<any>{
+  public signup(newUser:User):Observable<any>{
     return this.http.post<any>(this.url + 'users/signup', newUser)
   }
   
