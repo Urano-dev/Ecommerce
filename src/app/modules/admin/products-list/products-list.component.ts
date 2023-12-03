@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { ProductsService } from 'src/app/services/products.service';
@@ -21,7 +22,6 @@ export class ProductsListComponent implements OnInit {
   waiting:Boolean=true
   
   products!:Array<any>
-
   selectedProducts:Array<any> = []
 
   constructor( private _products:ProductsService){}
@@ -47,7 +47,50 @@ export class ProductsListComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  check(row:any){
 
+  check(element:any, event: MatCheckboxChange) {
+      
+    if (event.checked) {
+      this.selectedProducts.push(element);
+    } else {
+      const index = this.selectedProducts.indexOf(element, 0);
+      if (index > -1)
+        this.selectedProducts.splice(index, 1);
+      if (this.selectedProducts.length == 0)
+         this.isCheck();
+    }    
   }
+
+  exists(product: any) {
+    return this.selectedProducts.indexOf(product) > -1;
+  };
+
+
+  isCheck(): boolean {
+    if (this.selectedProducts.length == 0 || this.selectedProducts.length != this.products.length) {
+      return false;
+    }
+    return true;
+  }
+
+  checkAll(event:any) {
+    if (event.checked) {
+      this.selectedProducts = [];
+      this.products.forEach(d => {
+          this.selectedProducts.push(d)    
+      })
+    } else {
+      this.selectedProducts = []
+    }
+}
+
+checkOne(product:any){
+  if(!this.exists(product)){
+    this.selectedProducts.push(product);    
+  }       
+}
+
+  // check(row:any){
+
+  // }
 }
