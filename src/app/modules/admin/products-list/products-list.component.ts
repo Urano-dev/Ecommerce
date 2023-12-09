@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import { Product } from 'src/app/models/new-product';
 import { ProductsService } from 'src/app/services/products.service';
 
 
@@ -21,8 +22,8 @@ export class ProductsListComponent implements OnInit {
   
   waiting:Boolean=true
   
-  products!:Array<any>
-  selectedProducts:Array<any> = []
+  products!:Array<Product>
+
 
   constructor( private _products:ProductsService){}
   
@@ -51,23 +52,26 @@ export class ProductsListComponent implements OnInit {
   check(element:any, event: MatCheckboxChange) {
       
     if (event.checked) {
-      this.selectedProducts.push(element);
+      element.selected = true
     } else {
-      const index = this.selectedProducts.indexOf(element, 0);
-      if (index > -1)
-        this.selectedProducts.splice(index, 1);
-      if (this.selectedProducts.length == 0)
-         this.isCheck();
+      element.selected = false
+      // const index = this.selectedProducts.indexOf(element, 0);
+      // if (index > -1)
+      //   this.selectedProducts.splice(index, 1);
+      // if (this.selectedProducts.length == 0)
+      //    this.isCheck();
     }    
   }
 
-  exists(product: any) {
-    return this.selectedProducts.indexOf(product) > -1;
+  exists(product: Product) {
+    const exists = this.products.find(prod => prod == product)
+    return exists?.selected
   };
 
 
   isCheck(): boolean {
-    if (this.selectedProducts.length == 0 || this.selectedProducts.length != this.products.length) {
+    const selected = this.products.filter(prod => prod.selected == true)
+    if (selected.length == 0 || selected.length != this.products.length) {
       return false;
     }
     return true;
@@ -75,22 +79,20 @@ export class ProductsListComponent implements OnInit {
 
   checkAll(event:any) {
     if (event.checked) {
-      this.selectedProducts = [];
-      this.products.forEach(d => {
-          this.selectedProducts.push(d)    
-      })
+     this.products.forEach(prod => prod.selected = true)
     } else {
-      this.selectedProducts = []
+      this.products.forEach(prod => prod.selected = false)
     }
 }
 
-checkOne(product:any){
-  if(!this.exists(product)){
-    this.selectedProducts.push(product);    
-  }       
+checkOne(product:Product){
+  product.selected=true;  
 }
 
-  // check(row:any){
-
-  // }
+sendBulk(){
+  const selected = this.products.filter(prod => prod.selected == true)
+  selected.forEach(prod => { delete prod.selected})
+  console.log(selected)
+  //this._products.updateBulk(selected)
+}
 }

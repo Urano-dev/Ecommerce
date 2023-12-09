@@ -6,7 +6,7 @@ stock:number
 cost:number
 brand:string
 img:string
-
+selected?:boolean
 
 constructor(
     name: string,
