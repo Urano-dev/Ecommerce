@@ -4,6 +4,8 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { Product } from 'src/app/models/new-product';
 import { ProductsService } from 'src/app/services/products.service';
+import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 
@@ -25,13 +27,14 @@ export class ProductsListComponent implements OnInit {
   products!:Array<Product>
 
 
-  constructor( private _products:ProductsService){}
+  constructor( private _products:ProductsService,
+    public dialog:MatDialog){}
   
   ngOnInit(): void {
     this._products.getAll().subscribe(
-      res=>{ console.log(res)
+      res=>{ 
         this.waiting=false
-      this.products=res.sort((a:any, b:any) => a.id - b.id)
+        this.products=res.sort((a:any, b:any) => a.id - b.id)
       // TABLA DE MATERIAL
       this.dataSource = new MatTableDataSource(this.products);
       this.dataSource.sort = this.sort;
@@ -68,13 +71,22 @@ export class ProductsListComponent implements OnInit {
     return exists?.selected
   };
 
-
   isCheck(): boolean {
     const selected = this.products.filter(prod => prod.selected == true)
     if (selected.length == 0 || selected.length != this.products.length) {
       return false;
     }
     return true;
+  }
+
+  isAnySelected(){
+    const selected = this.products.filter(prod => prod.selected == true)
+    
+    if (selected.length >= 0) {
+      return true;
+    }
+    
+    return false;
   }
 
   checkAll(event:any) {
@@ -89,10 +101,32 @@ checkOne(product:Product){
   product.selected=true;  
 }
 
+deleteProduct(id:number){
+  this.openDialog('Delete Product', 'Are you sure you want to delete this product?', 'ok')
+}
+
 sendBulk(){
   const selected = this.products.filter(prod => prod.selected == true)
   selected.forEach(prod => { delete prod.selected})
   console.log(selected)
   //this._products.updateBulk(selected)
 }
+
+openDialog(title:string, message:string, button:string){
+
+  const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data:{
+        title: title,
+        message:message,
+        button: button
+      }, 
+      maxWidth: '450px'
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if(result) {}
+    //reset
+  });
+}
+
 }

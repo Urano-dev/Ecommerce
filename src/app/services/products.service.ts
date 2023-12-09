@@ -8,6 +8,8 @@ import { Filter } from '../models/filter';
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class ProductsService {
 
   URL_API=environment._urlApi
@@ -16,7 +18,7 @@ export class ProductsService {
   constructor(private http:HttpClient) { }
 
 
-  public getAll():Observable<any[]>{
+  public getAll():Observable<Product[]>{
     return this.http.get<any>(this.URL_API + 'products')
   }
 
@@ -68,4 +70,10 @@ export class ProductsService {
     
     return this.http.get<any>(this.URL_API + 'products'+ query)
   }
+
+  public createTestProducts (product:Product){
+    return this.http.post<any>(this.URL_API + 'products?multiples=true', product)
+  }
 }
+
+

@@ -24,8 +24,15 @@
                 <input class="form-control campo-form" type="text" placeholder="Description" aria-label="description"
                     name="description" formControlName="description" required>
 
-                <input class="form-control campo-form" type="text" placeholder="Brand Name" aria-label="brand"
+                    <select class="form-select campo-form" placeholder="Brand Name" aria-label="brand"
                     name="brand" formControlName="brand" required>
+                    <option value="" selected disabled>Select Brand</option>
+
+                        <option value="brandId1">Brand 1</option>
+                        <option value="brandId2">Brand 2</option>
+                        <option value="brandId3">Brand 3</option>
+                        <option value="brandId4">Brand 4</option>
+                      </select>
 
                 <input class="form-control campo-form" type="number" placeholder="Stock" aria-label="stock" name="stock"
                     formControlName="stock" required>

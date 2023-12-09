@@ -1,10 +1,11 @@
 export class Product {
-
+id?:number
 name: string
 description:string
 stock:number
 cost:number
-brand:string
+brandId:number
+categoryId:number
 img:string
 selected?:boolean
 
@@ -13,7 +14,8 @@ constructor(
     description:string,
     stock:number,
     cost:number,
-    brand:string,
+    brandId:number,
+    categoryId:number,
     img:string
     ) {
 
@@ -21,7 +23,10 @@ constructor(
         this.description=description
         this.stock=stock
         this.cost=cost
-        this.brand=brand
+        this.brandId=brandId
+        this.categoryId = categoryId
         this.img=img
 }
 }
+
+

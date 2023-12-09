@@ -1,0 +1,71 @@
+.campo-form{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+
+
+.img-card {
+
+    margin: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+
+}
+.edit-foto-btn {
+    background-color: rgba(0, 0, 0, 0.72);
+    border-radius: 10px;
+    border-color: rgba(0, 0, 0, 0.72);
+}
+
+
+input[type="file"] {
+    display: none;
+}
+
+
+.custom-file-upload{
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+}
+
+.custom-file-upload:hover{
+    cursor: pointer
+}
+
+.custom-file-upload img{
+    opacity: 1;
+    display: block;
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    transition: .5s ease;
+    backface-visibility: hidden;
+  }
+
+.custom-file-upload:hover img {
+    opacity: 0.5;
+  }
+
+
+.custom-file-upload i{
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 2;
+    font-size: 18px;
+    color: white;
+    background-color: black;
+    height: 35px;
+    width: 35px;
+    border-radius: 25px;
+    transition: .5s ease;
+}
+.custom-file-upload:hover i{
+    opacity: 1;
+
+}
+.custom-file-upload:hover span {
+    opacity: 1;
+}

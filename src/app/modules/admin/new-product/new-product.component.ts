@@ -37,7 +37,7 @@ export class NewProductComponent implements OnInit{
         description:['', Validators.required],
         stock:['', Validators.required],
         cost:['', Validators.required],
-        brand:['', Validators.required],
+        //brand:['', Validators.required], ------------------------- REACTIVAR CUANDO ESTE LA LOGICA EN EL BACK
         img:[''],
       })
     }
@@ -56,8 +56,8 @@ onCreate(){
   if(!dataForm.img){
     dataForm.img ='https://cdn3.iconfinder.com/data/icons/graphic-and-web-design/64/PACKAGING_DESIGN-1024.png'
   }
-
- this._products.create(dataForm).subscribe(
+ // OJO! CAMBIAR 'createTestProduct' por 'create'
+ this._products.createTestProducts(dataForm).subscribe(
   res => {
     this.sending=false
     this.openDialog('New product', 'Product successfully created!','Ok')
