@@ -8,22 +8,24 @@ import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { HomeComponent } from './components/home/home.component';
-import { CheckoutComponent } from './components/checkout/checkout.component';
-import { LoginComponent } from './components/login/login.component';
-import { ProductsComponent } from './components/products/products.component';
-import { AboutComponent } from './components/about/about.component';
-import { CartComponent } from './components/cart/cart.component';
-import { DetailsComponent } from './components/details/details.component';
-import { SignupComponent } from './components/signup/signup.component';
+import { NavbarComponent } from './modules/components/navbar/navbar.component';
+import { FooterComponent } from './modules/components/footer/footer.component';
+import { HomeComponent } from './modules/components/home/home.component';
+import { CheckoutComponent } from './modules/components/checkout/checkout.component';
+import { LoginComponent } from './modules/components/login/login.component';
+import { ProductsComponent } from './modules/components/products/products.component';
+import { AboutComponent } from './modules/components/about/about.component';
+import { CartComponent } from './modules/components/cart/cart.component';
+import { DetailsComponent } from './modules/components/details/details.component';
+import { SignupComponent } from './modules/components/signup/signup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-import { TermsComponent } from './components/terms/terms.component';
+import { TermsComponent } from './modules/components/terms/terms.component';
 
 
 @NgModule({
@@ -50,8 +52,10 @@ import { TermsComponent } from './components/terms/terms.component';
     RouterModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
+    MatPaginatorModule,
     MatDialogModule,
     MatCheckboxModule,
+    MatSnackBarModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

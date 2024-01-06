@@ -13,6 +13,8 @@
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
+    "strictPropertyInitialization": false,
+    "strictNullChecks": false,
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,

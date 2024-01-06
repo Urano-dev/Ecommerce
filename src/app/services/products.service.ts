@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Product } from '../models/new-product';
-import { Filter } from '../models/filter';
+import { Product } from './models/new-product';
+import { Filter } from './models/filter';
 
 @Injectable({
   providedIn: 'root'
@@ -59,14 +59,14 @@ export class ProductsService {
 
   // FALTA RUTAS CON QUERYS
   
-  public getAllFiltered (filter:Filter){
+  public getAllFiltered (pageIndex:number, length:number , filter:Filter){
     let query = ''
-    for (const property in filter) {
-      if(filter[property]){
-        if(query== '') { query+='?'}else {query+='&'} 
-        query += `?${property}=${filter[property]}`
-      }
-    }
+    // for (const property in filter) {
+    //   if(filter[property]){
+    //     if(query== '') { query+='?'}else {query+='&'} 
+    //     query += `?${property}=${filter[property]}`
+    //   }
+    // }
     
     return this.http.get<any>(this.URL_API + 'products'+ query)
   }

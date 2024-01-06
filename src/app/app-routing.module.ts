@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-import { CheckoutComponent } from './components/checkout/checkout.component';
-import { LoginComponent } from './components/login/login.component';
-import { ProductsComponent } from './components/products/products.component';
-import { AboutComponent } from './components/about/about.component';
-import { DetailsComponent } from './components/details/details.component';
-import { CartComponent } from './components/cart/cart.component';
-import { SignupComponent } from './components/signup/signup.component';
+import { HomeComponent } from './modules/components/home/home.component';
+import { CheckoutComponent } from './modules/components/checkout/checkout.component';
+import { LoginComponent } from './modules/components/login/login.component';
+import { ProductsComponent } from './modules/components/products/products.component';
+import { AboutComponent } from './modules/components/about/about.component';
+import { DetailsComponent } from './modules/components/details/details.component';
+import { CartComponent } from './modules/components/cart/cart.component';
+import { SignupComponent } from './modules/components/signup/signup.component';
 
 //title: 'First component', se puede agregar junto al PATH
 const routes: Routes = [
