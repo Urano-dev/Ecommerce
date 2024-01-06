@@ -1,25 +1,57 @@
-<aside>
 
-    <mat-form-field class="filter">
+<aside class="filter_products">
+    
+    <mat-form-field>
         <mat-label>Order By</mat-label>
-        <mat-select (valueChange)="changeFilterOrder($event)" name="orderBy" id="orderBy">
+        <mat-select (valueChange)="changeFilterOrder($event)" name="orderBy" id="orderBy" [(value)]="selectedOrder">
             <mat-option value="0">Price: Low to High</mat-option>
             <mat-option value="1">Price: High to Low</mat-option>
             <mat-option value="2">Name: Low to High</mat-option>
             <mat-option value="3">Name: High to Low</mat-option>
-            <mat-option value="4" selected>Newest Arrivals</mat-option>
+            <mat-option value="4">Newest Arrivals</mat-option>
             <mat-option value="5">Oldest Arrivals</mat-option>
         </mat-select>
       </mat-form-field>
 
-    <form role="search">
-        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+    <!-- <form role="search" >
+        <mat-input class="form-control" type="search" placeholder="Search" aria-label="Search" (input)="changeFilterText($event)" [(ngModel)]="this.filter.freeText">
+    </form> -->
+    <form #filterForm="ngForm">
+    <mat-form-field class="example-form-field">
+        <mat-label>Search</mat-label>
+        <input matInput type="text" name="filter" [(ngModel)]="filter.freeText">
+        @if (filter.freeText) {
+          <button matSuffix mat-icon-button aria-label="Clear" (click)="filter.freeText=''" >
+            <mat-icon>close</mat-icon>
+          </button>
+        }
+      </mat-form-field>
     </form>
-    
-    <h3>Categories</h3>
-    <ul>
-        <li *ngFor="let cat of categories">{{cat.name}}</li>
-    </ul>
+
+    <mat-form-field>
+        <mat-label>Categories</mat-label>
+        <mat-select (valueChange)="changeFilterCategory($event)" name="category" id="category">
+            <mat-option value="">All</mat-option>
+            @for (category of categories; track $index) {<mat-option [value]="category.id">{{category.name}}</mat-option>}
+
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Brands</mat-label>
+        <mat-select (valueChange)="changeFilterBrand($event)" name="category" id="category">
+            <mat-option value="">All</mat-option>
+            @for (brand of brands; track $index) {<mat-option [value]="brand.id">{{brand.name}}</mat-option>}
+
+        </mat-select>
+      </mat-form-field>
+
+      <mat-slider min="0" max="500" step="10" discrete [displayWith]="formatLabel" >
+        <input value="0" matSliderStartThumb (change)="sliderMinChanged($event)">
+        <input value="500" matSliderEndThumb (change)="sliderMaxChanged($event)">
+      </mat-slider>
+
+  
 </aside>
 
 <section class="container-fluid d-flex flex-column justify-content-center">

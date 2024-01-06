@@ -26,14 +26,21 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {OverlayModule} from '@angular/cdk/overlay';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSliderModule} from '@angular/material/slider';
+
 
 import { TermsComponent } from './modules/components/terms/terms.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
   declarations: [
+   
     AppComponent,
     NavbarComponent,
     FooterComponent,
@@ -48,6 +55,7 @@ import { MatButtonModule } from '@angular/material/button';
     TermsComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -64,6 +72,10 @@ import { MatButtonModule } from '@angular/material/button';
     MatSelectModule,
     MatInputModule,
     MatButtonModule,
+    OverlayModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatSliderModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

@@ -150,7 +150,7 @@ h1,h2,h3,h4,h5,h6{
     max-width: 350px;
 }
 
-.mat-mdc-progress-spinner{
+::ng-deep .mat-mdc-progress-spinner{
     height: 50% !important;
     margin: auto;
     --mdc-circular-progress-active-indicator-color: var(--secondary_color) !important;

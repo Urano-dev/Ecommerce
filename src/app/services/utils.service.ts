@@ -6,16 +6,19 @@ import { Category } from './models/utils';
 @Injectable({
   providedIn: 'root'
 })
-export class CategoriesService {
+export class UtilsService {
   URL_API=environment._urlApi
 
 
   constructor(private http:HttpClient) { }
   
-  public getAll():Promise<Category[]>{
+  public getAllCategories():Promise<Category[]>{
     return this.http.get<any>(this.URL_API + 'categories').toPromise()
   }
 
+  public getAllBrands():Promise<Category[]>{
+    return this.http.get<any>(this.URL_API + 'brands').toPromise()
+  }
   //brands
   //categories
 

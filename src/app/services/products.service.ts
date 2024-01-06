@@ -61,13 +61,13 @@ export class ProductsService {
   
   public getAllFiltered (filter:FilterShop){
     let query = ''
-    // for (const property in filter) {
-    //   if(filter[property]){
-    //     if(query== '') { query+='?'}else {query+='&'} 
-    //     query += `?${property}=${filter[property]}`
-    //   }
-    // }
-    
+    for (const property in filter) {
+      if(filter[property]){
+        if(query== '') { query+='?'}else {query+='&'} 
+        query += `?${property}=${filter[property]}`
+      }
+    }
+    console.log(query)
     return this.http.get<any>(this.URL_API + 'products'+ query)
   }
 

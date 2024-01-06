@@ -8,11 +8,13 @@ export class Filter {
 }
 
 export class FilterShop {
-    from: number;
+    [key: string]: any;
+
+    from: number | string;
     length: number;
     freeText:string;
-    order?: Order;
-    orderAsc?: boolean;
+    order?: string;
+    orderAsc?: string;
     categoryId:number
     brandId:number
     costMin:number
