@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {CookieService} from 'ngx-cookie-service';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule,  ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 
@@ -24,8 +24,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 import { TermsComponent } from './modules/components/terms/terms.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -51,11 +55,15 @@ import { TermsComponent } from './modules/components/terms/terms.component';
     ReactiveFormsModule,
     RouterModule,
     BrowserAnimationsModule,
+    MatFormFieldModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
     MatDialogModule,
     MatCheckboxModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSelectModule,
+    MatInputModule,
+    MatButtonModule,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

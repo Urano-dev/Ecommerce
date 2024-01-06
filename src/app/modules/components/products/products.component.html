@@ -1,27 +1,30 @@
 <aside>
-    <label for="orderBy">Order By</label>
-    <select name="orderBy" id="orderBy">
-        <option value="" selected></option>
-        <option value="low">Price: Low to High</option>
-        <option value="high">Price: High to Low</option>
-        <option value="newest">Newest Arrivals</option>
-    </select>
 
+    <mat-form-field class="filter">
+        <mat-label>Order By</mat-label>
+        <mat-select (valueChange)="changeFilterOrder($event)" name="orderBy" id="orderBy">
+            <mat-option value="0">Price: Low to High</mat-option>
+            <mat-option value="1">Price: High to Low</mat-option>
+            <mat-option value="2">Name: Low to High</mat-option>
+            <mat-option value="3">Name: High to Low</mat-option>
+            <mat-option value="4" selected>Newest Arrivals</mat-option>
+            <mat-option value="5">Oldest Arrivals</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    <form role="search">
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+    </form>
+    
     <h3>Categories</h3>
     <ul>
-        <li>Category 1</li>
-        <li>Category 2</li>
-        <li>Category 3</li>
+        <li *ngFor="let cat of categories">{{cat.name}}</li>
     </ul>
 </aside>
-<section>
 
-</section>
-
-
-
-<section class="container-fluid d-flex justify-content-center">
-    <span *ngIf="!data">Loading Products...</span>
+<section class="container-fluid d-flex flex-column justify-content-center">
+    <span *ngIf="!data" class="text-center">Loading Products...</span>
+    
     <div class="container row" *ngIf="data">
 
         <div class="col-12 col-sm-4 col-lg-3 product" *ngFor="let product of data">
@@ -44,8 +47,7 @@
         </div>
 
     </div>
+    <mat-paginator [length]="resultsLength" [pageSize]="10"
+                   [pageSizeOptions]="[5, 10, 25, 100]" class="background-paginator">
+    </mat-paginator>
 </section>
-
-<mat-paginator [length]="resultsLength" [pageSize]="10"
-               [pageSizeOptions]="[5, 10, 25, 100]" class="background-paginator">
-</mat-paginator>

@@ -7,20 +7,22 @@ export class Filter {
     img:string
 }
 
-export interface queryDataModel {
-  /**Orden*/
-  order?: Order;
-  /**Dirección del ordenamiento*/
-  orderAsc?: boolean;
-  /**Filtro a utilizar*/
-  filter?: Filter;
-  /**Desde qué registro se deben obtener los datos*/
-  from: number;
-  /**Cantidad de registros a obtener*/
-  length: number;
+export class FilterShop {
+    from: number;
+    length: number;
+    freeText:string;
+    order?: Order;
+    orderAsc?: boolean;
+    categoryId:number
+    brandId:number
+    costMin:number
+    costMax:number
+}
+ 
+export enum Order {
+    byCreated = 0,
+    byPrice = 1,
+    byName = 2,
 }
 
-export enum Order {
-    byPrice = 0,
-    byName = 1,
-}
+

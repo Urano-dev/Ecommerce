@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Product } from './models/new-product';
-import { Filter } from './models/filter';
+import { Filter, FilterShop } from './models/filter';
 
 @Injectable({
   providedIn: 'root'
@@ -59,7 +59,7 @@ export class ProductsService {
 
   // FALTA RUTAS CON QUERYS
   
-  public getAllFiltered (pageIndex:number, length:number , filter:Filter){
+  public getAllFiltered (filter:FilterShop){
     let query = ''
     // for (const property in filter) {
     //   if(filter[property]){

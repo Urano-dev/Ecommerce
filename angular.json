@@ -47,12 +47,12 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": true,
-              "optimization": true,
+              "buildOptimizer": false,
+              "optimization": false,
               "vendorChunk": true,
-              "extractLicenses": true,
-              "sourceMap": false,
-              "namedChunks": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
