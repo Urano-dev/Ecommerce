@@ -1,3 +1,5 @@
+@import '../../../../styles.variables.scss';
+
 .banner{
     min-height: 90vh;
     background: url(../../../../assets/imgs/banner02.webp);
@@ -5,10 +7,10 @@
     background-size: cover;
 }
 .banner_box{
-    background-color: var(--light_color_50);
+    background-color: $light_color_50;
     width: 100%;
     min-height: 150px;
-	color: var(--dark_color);
+	color: $dark_color;
 	cursor:auto;
 }
 

@@ -7,7 +7,7 @@
 
 .img-card {
 
-    margin: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+    margin: $bs-card-spacer-y) $bs-card-spacer-x);
 
 }
 .edit-foto-btn {

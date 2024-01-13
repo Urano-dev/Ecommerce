@@ -1,47 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy:ital@0;1&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Halant:wght@400;700&display=swap');
-
-:root{
-    /*COLORS */
-    --light_color: #F1E0C5;
-    --light_color_50: #f1e0c580;
-    --light_color_25: #f1e0c54b;
-
-    --dark_color: #1f1e1e;
-    --bs-dark-rgb:31, 30, 30;
-    --dark_color_25: #1f1e1e3d;
-    
-    --primary_color:#FFC299;
-    
-    --secondary_color:#914D76;
-
-
-    /* FONTS */
-    --primary_font:'Sorts Mill Goudy', serif;
-    --secondary_font:'Halant', serif;
-}
+@import './styles.variables.scss';
 
 /* NORMALIZE */
 app-root{
     min-height: 100vh;
 }
 .dark_bg{
-    background-color: var(--dark_color);
+    background-color: $dark_color;
 }
 *{
-    font-family: var(--secondary_font);
+    font-family: $secondary_font;
 }
 
 h1,h2,h3,h4,h5,h6{
-    font-family: var(--primary_font);
+    font-family: $primary_font;
 }
 .mat-mdc-dialog-container .mdc-dialog__title{
     font-weight: bold !important;
-    color: var(--light_color) !important;
-    font-family: var(--primary_font) !important;
+    color: $light_color !important;
+    font-family: $primary_font !important;
 }
 .mat-mdc-dialog-container .mdc-dialog__content{
-    font-family: var(--secondary_font) !important;
+    font-family: $secondary_font !important;
 }
 
 
@@ -49,24 +28,24 @@ h1,h2,h3,h4,h5,h6{
     text-align: justify;
 }
 .text-light{
-    color: var(--light_color);
+    color: $light_color;
 }
 
 /* DASH-BOARD */
   .btn-dash{
     border-radius: 10px;
-    box-shadow: -5px 5px 5px var(--dark_color_25);
+    box-shadow: -5px 5px 5px $dark_color_25;
     padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--light_color_25);
+    background-color: $light_color_25;
     transition: all 0.5s;
     cursor: pointer;
 }
 .btn-dash:hover{
-    background-color: var(--light_color_50);
+    background-color: $light_color_50;
     scale:1.03 }
 
 .img-dash{
@@ -78,8 +57,8 @@ h1,h2,h3,h4,h5,h6{
 
 /* BUTTON STYLES */
 .btn-styled{
-    background-color: var(--secondary_color);
-    color: var(--light_color);
+    background-color: $secondary_color;
+    color: $light_color;
     text-decoration: none;
     cursor: pointer;
     padding-top: 0.75rem;
@@ -88,7 +67,7 @@ h1,h2,h3,h4,h5,h6{
     padding-right: 1rem;
     border-radius: 10px;
     border:none;
-    font-family: var(--secondary_font);
+    font-family: $secondary_font;
     transition: all 0.5s;
     margin-left: 0.25rem;
     margin-right: 0.25rem;
@@ -96,13 +75,13 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .btn-styled:hover{
-    background-color: var(--light_color);
-    color: var(--secondary_color);
+    background-color: $light_color;
+    color: $secondary_color;
 }
 
 .btn-styled_inv{
-    background-color: var(--light_color);
-    color: var(--secondary_color);
+    background-color: $light_color;
+    color: $secondary_color;
     text-decoration: none;
     cursor: pointer;
     padding-top: 0.75rem;
@@ -111,7 +90,7 @@ h1,h2,h3,h4,h5,h6{
     padding-right: 1rem;
     border-radius: 10px;
     border:none;
-    font-family: var(--secondary_font);
+    font-family: $secondary_font;
     transition: all 0.5s;
     margin-left: 0.25rem;
     margin-right: 0.25rem;
@@ -119,8 +98,8 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .btn-styled_inv:hover{
-    background-color: var(--secondary_color);
-    color: var(--light_color);
+    background-color: $secondary_color;
+    color: $light_color;
 }
 
 
@@ -153,7 +132,7 @@ h1,h2,h3,h4,h5,h6{
 ::ng-deep .mat-mdc-progress-spinner{
     height: 50% !important;
     margin: auto;
-    --mdc-circular-progress-active-indicator-color: var(--secondary_color) !important;
+    --mdc-circular-progress-active-indicator-color: $secondary_color !important;
 }
 :focus-visible {
     outline: none;
@@ -171,6 +150,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     width: 100%;
     aspect-ratio: 1/1;
     object-fit: cover;
+    background-color: transparent;
 }
 
 
@@ -182,7 +162,7 @@ figure {
 	float: left;
 	overflow: hidden;
 	margin: 10px 1%;
-	background: #3085a3;
+	//background: #3085a3;
 	text-align: center;
 	cursor: pointer;
 }
@@ -213,7 +193,7 @@ figure figcaption > a {
 
 /*---------------------------------*/
 figure.effect-goliath {
-	background: var(--dark_color);
+	background: $dark_color;
 }
 
 figure.effect-goliath img,

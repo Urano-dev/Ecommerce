@@ -1,5 +1,7 @@
 
-<aside class="filter_products">
+<mat-drawer-container class="example-container">
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <aside class="filter_products">
     
     <mat-form-field>
         <mat-label>Order By</mat-label>
@@ -24,6 +26,10 @@
           <button matSuffix mat-icon-button aria-label="Clear" (click)="filter.freeText=''" >
             <mat-icon>close</mat-icon>
           </button>
+        }@else {
+          <button matSuffix mat-icon-button >
+            <mat-icon>search</mat-icon>
+          </button>
         }
       </mat-form-field>
     </form>
@@ -45,41 +51,63 @@
 
         </mat-select>
       </mat-form-field>
+      <div class="d-flex justify-content-center">
 
-      <mat-slider min="0" max="500" step="10" discrete [displayWith]="formatLabel" >
-        <input value="0" matSliderStartThumb (change)="sliderMinChanged($event)">
-        <input value="500" matSliderEndThumb (change)="sliderMaxChanged($event)">
-      </mat-slider>
+        <mat-slider min="0" max="500" step="10" discrete [displayWith]="formatLabel">
+          <input value="0" matSliderStartThumb (change)="sliderMinChanged($event)">
+          <input value="500" matSliderEndThumb (change)="sliderMaxChanged($event)">
+        </mat-slider>
+      </div>
 
   
 </aside>
-
-<section class="container-fluid d-flex flex-column justify-content-center">
-    <span *ngIf="!data" class="text-center">Loading Products...</span>
-    
-    <div class="container row" *ngIf="data">
-
-        <div class="col-12 col-sm-4 col-lg-3 product" *ngFor="let product of data">
-            <figure class="effect-goliath">
-                <img [src]="product.img" alt="{{product.description}}" class="product_img"/>
-                <figcaption>
-                    <h2>{{product.name | titlecase}}</h2>
-
-                        <p class="text-center">$ {{product.cost}}</p>
-
-                    <a routerLink="details/{{product.id}}"></a>
-                </figcaption>			
-            </figure>
+</mat-drawer>
 
 
+<section class="container-fluid d-flex flex-column justify-content-center product-container">
 
-            <div class="product-info">
-                <p>{{product.description}}</p>
-            </div>
+  @if(!data){
+    <span class="text-center">Loading Products...</span>
+
+  }@else {
+    <div class="example-sidenav-content">
+      <button type="button" mat-button (click)="drawer.toggle()">
+        Toggle sidenav
+      </button>
+    </div>
+    <div class="row p-4" *ngIf="data">
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 product" *ngFor="let product of data">
+          
+        <div class="card">
+          <img [src]="product.img" class="card-img-top product_img" alt="{{product.description}}">
+          <div class="card-body">
+            <h2>{{product.name | titlecase}}</h2>
+
+                      <p class="text-center">$ {{product.cost}}</p>
+
+                  <a routerLink="details/{{product.id}}"></a>
+                  <div class="product-info">
+                    <p>{{product.description}}</p>
+                  </div>
+          </div>
         </div>
 
-    </div>
+          
+      </div>
+
+  </div>
+
+  }
+    
+
+
+   
+
     <mat-paginator [length]="resultsLength" [pageSize]="10"
                    [pageSizeOptions]="[5, 10, 25, 100]" class="background-paginator">
     </mat-paginator>
+    
 </section>
+
+</mat-drawer-container>

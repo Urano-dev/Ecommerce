@@ -1,0 +1,9 @@
+@import '../../../../styles.variables.scss';
+
+:root {
+    --animate-delay: 0.1s;
+  }
+
+  .clients-section{
+    background-color: $dark_color;
+  }

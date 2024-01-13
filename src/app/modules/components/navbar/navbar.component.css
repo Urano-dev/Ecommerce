@@ -20,5 +20,5 @@ nav{
 
   .active-link{
     font-weight: bold;
-    border-bottom: var(--light_color) 2px solid;
+    border-bottom: $light_color 2px solid;
   }

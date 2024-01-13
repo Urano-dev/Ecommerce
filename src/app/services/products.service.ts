@@ -64,7 +64,7 @@ export class ProductsService {
     for (const property in filter) {
       if(filter[property]){
         if(query== '') { query+='?'}else {query+='&'} 
-        query += `?${property}=${filter[property]}`
+        query += `${property}=${filter[property]}`
       }
     }
     console.log(query)

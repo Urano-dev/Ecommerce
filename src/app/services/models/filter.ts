@@ -14,7 +14,7 @@ export class FilterShop {
     length: number;
     freeText:string;
     order?: string;
-    orderAsc?: string;
+    orderAsc?: boolean;
     categoryId:number
     brandId:number
     costMin:number

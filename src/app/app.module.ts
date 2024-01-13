@@ -23,19 +23,21 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {OverlayModule} from '@angular/cdk/overlay';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatSliderModule} from '@angular/material/slider';
+import {MatCardModule} from '@angular/material/card';
 
 
 import { TermsComponent } from './modules/components/terms/terms.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
+import { Constants } from 'src/environments/app.setings';
 
 
 @NgModule({
@@ -75,9 +77,15 @@ import { CommonModule } from '@angular/common';
     OverlayModule,
     MatIconModule,
     MatSidenavModule,
-    MatSliderModule
+    MatSliderModule,
+    MatCardModule,
+
   ],
-  providers: [CookieService],
+  providers: [CookieService,
+      //{ provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: Constants.TOOLTIP_DEFAULTS },
+      { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: Constants.SNACKBAR_DEFAULTS },
+      //{ provide: MAT_PAGINATOR_DEFAULT_OPTIONS, useValue: Constants.PAGINATOR_DEFAULTS }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FilterShop } from 'src/app/services/models/filter';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
@@ -12,7 +13,20 @@ export class HomeComponent implements OnInit {
   constructor(private _products:ProductsService){}
 
   ngOnInit(){
-    this._products.getAll().subscribe(
+
+    const filter:FilterShop = {
+      from: 0,
+      length: 8,
+      freeText:'',
+      order: 'createdAt',
+      categoryId:null,
+      brandId:null,
+      costMin:null,
+      costMax:null,
+  }
+
+
+    this._products.getAllFiltered(filter).subscribe(
       res=>{this.products=res; console.log(res)},
       err=>{console.log(err)}
     )

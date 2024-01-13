@@ -55,7 +55,7 @@ ngOnInit() {
 
 
   this.filter.order='createdAt'
-  this.filter.orderAsc='false'
+  this.filter.orderAsc=false
   this.filter.freeText=''
   this.filter.costMin=null
   this.filter.costMax=null
@@ -65,21 +65,21 @@ ngOnInit() {
 
 
   ngAfterViewInit() {
-    this.subs = merge(this.paginator.page, this.filterForm.valueChanges.pipe(skip(1), debounceTime(500)), this.refresh)
+    this.subs = merge(this.paginator.page, this.filterForm.valueChanges.pipe(skip(1), debounceTime(500)), this.refresh) //this.paginator.pageSize, 
       .pipe(
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
-
           this.filter.from =this.paginator.pageIndex? this.paginator.pageIndex * this.paginator.pageSize: '0',
           this.filter.length=this.paginator.pageSize
+          if(!this.filter.orderAsc) delete this.filter.orderAsc
           console.log(this.filter)
           return this._product.getAllFiltered(this.filter);
         }),
         map(data => {
           this.isLoadingResults = false;
           this.resultsLength = data.recordsCount;
-          return data.data;
+          return data
         }),
   
         catchError(() => {
@@ -100,27 +100,27 @@ ngOnInit() {
       switch ($ev) {
         case '0':
           this.filter.order='cost'
-          this.filter.orderAsc='true'
+          this.filter.orderAsc=true
           break;
         case '1':
           this.filter.order='cost'
-          this.filter.orderAsc='false'
+          this.filter.orderAsc=false
           break;
         case '2': 
           this.filter.order='name'
-          this.filter.orderAsc='true'
+          this.filter.orderAsc=true
           break;
         case '3':
           this.filter.order='name'
-          this.filter.orderAsc='false'
+          this.filter.orderAsc=false
           break;
         case '4':
           this.filter.order='createdAt'
-          this.filter.orderAsc='false'
+          this.filter.orderAsc=false
           break;
         case '5':
           this.filter.order='createdAt'
-          this.filter.orderAsc='true'
+          this.filter.orderAsc=true
           break;
       }
       this.refresh.emit()
