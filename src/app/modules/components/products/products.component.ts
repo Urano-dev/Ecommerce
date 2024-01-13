@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { merge, of as observableOf, Subscription,Observable, Subject, startWith, switchMap, map, catchError, skip, debounceTime, } from 'rxjs';
 import { UtilsService } from 'src/app/services/utils.service';
 import { FilterShop } from 'src/app/services/models/filter';
-import { Product } from 'src/app/services/models/new-product';
+import { IncomingProduct, Product } from 'src/app/services/models/new-product';
 import { Brand, Category } from 'src/app/services/models/utils';
 import { ProductsService } from 'src/app/services/products.service';
 import { Constants } from 'src/environments/app.setings';
@@ -24,11 +24,19 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   refresh = new EventEmitter();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.checkDevice();
+  }
+
+  modeDrawer:'side'|'over' = 'side'
+  fromDrawer: 'left'| 'top' = 'left'
 
   isLoadingResults: boolean = true
   resultsLength = 0;
   filter = new FilterShop();
-  data: Product[] = [];
+  data: IncomingProduct[] = [];
   categories: Category[];
   brands:Brand[]
   selectedOrder = "4"
@@ -37,6 +45,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   constructor(
     private _product:ProductsService, private router: Router,
     private snackBar: MatSnackBar,
+    private _router: Router,
     private _utils: UtilsService
   ){}
 
@@ -61,6 +70,9 @@ ngOnInit() {
   this.filter.costMax=null
   this.filter.brandId=null
   this.filter.categoryId=null
+
+  this.checkDevice();
+
 }
 
 
@@ -89,7 +101,7 @@ ngOnInit() {
         })
     ).subscribe(data => {
         console.log(data)
-        this.data = data as Product[]
+        this.data = data as IncomingProduct[]
       });
   
   
@@ -157,4 +169,20 @@ ngOnInit() {
       this.refresh.emit()
     }
     
+
+    //ROUTERS
+    goToDetail(id:number){
+      this._router.navigate([`/details/${id}`])
+    }
+
+    checkDevice(): void {
+      const width = window.innerWidth;
+      //si no es desktop
+      if(width <=992) {
+        this.fromDrawer = 'top'
+      }else {
+        //si es desktop
+        this.fromDrawer = 'left'
+      }
+    }
 }

@@ -12,6 +12,7 @@ app-root{
 }
 
 h1,h2,h3,h4,h5,h6{
+    text-transform: uppercase;
     font-family: $primary_font;
 }
 .mat-mdc-dialog-container .mdc-dialog__title{
@@ -157,11 +158,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 /*-----------------*/
 /***** Goliath *****/
 /*-----------------*/
+.product-goliath {
+
+
 figure {
 	position: relative;
 	float: left;
 	overflow: hidden;
 	margin: 10px 1%;
+    width:100%;
 	//background: #3085a3;
 	text-align: center;
 	cursor: pointer;
@@ -242,4 +247,5 @@ figure.effect-goliath:hover p {
 }
 figcaption p{
    width: 100%;
+}
 }

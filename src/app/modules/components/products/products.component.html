@@ -1,6 +1,6 @@
 
-<mat-drawer-container class="example-container">
-  <mat-drawer #drawer class="example-sidenav" mode="side">
+<mat-drawer-container class="drawer-container" autosize>
+  <mat-drawer #drawer class="container-sidenav" mode="side" >
     <aside class="filter_products">
     
     <mat-form-field>
@@ -61,40 +61,44 @@
 
   
 </aside>
-</mat-drawer>
+  </mat-drawer>
 
-
-<section class="container-fluid d-flex flex-column justify-content-center product-container">
+<mat-drawer-content>
+<section class="container-fluid d-flex flex-column justify-content-center product-container h-100">
 
   @if(!data){
     <span class="text-center">Loading Products...</span>
 
   }@else {
-    <div class="example-sidenav-content">
-      <button type="button" mat-button (click)="drawer.toggle()">
-        Toggle sidenav
+    <div class="container-button-sidenav">
+      <button mat-icon-button aria-label="Display filters" (click)="drawer.toggle()" class="d-flex justify-content-center align-items-center">
+        <mat-icon>menu</mat-icon>
       </button>
     </div>
     <div class="row p-4" *ngIf="data">
 
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3 product" *ngFor="let product of data">
+<!-- PRODUCTS -->
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 product py-3" *ngFor="let product of data">
           
-        <div class="card">
-          <img [src]="product.img" class="card-img-top product_img" alt="{{product.description}}">
+        <div class="card product-card" (click)="goToDetail(product.id)">
+          <img src="https://picsum.photos/200" class="card-img-top product_img" alt="{{product.description}}">  
+          <!-- [src]="product.img" -->
+
+          <div class="product-category" *ngIf="product.Category">
+            <span >{{product.Category.name}}</span>
+          </div>
+
+          <div class="product-brand" *ngIf="product.Brand">
+            <span>{{product.Brand.name}}</span>
+          </div>
           <div class="card-body">
-            <h2>{{product.name | titlecase}}</h2>
 
-                      <p class="text-center">$ {{product.cost}}</p>
-
-                  <a routerLink="details/{{product.id}}"></a>
-                  <div class="product-info">
-                    <p>{{product.description}}</p>
-                  </div>
+            <h2 class="text-center">{{product.name | titlecase}}</h2>
+            <p class="text-center">$ {{product.cost}}</p>
           </div>
         </div>
-
-          
       </div>
+<!-- END PRODUCTS -->
 
   </div>
 
@@ -109,5 +113,5 @@
     </mat-paginator>
     
 </section>
-
+</mat-drawer-content>
 </mat-drawer-container>
