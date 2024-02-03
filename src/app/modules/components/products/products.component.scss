@@ -67,11 +67,21 @@ mat-slider{
     .filter_products{
         flex-direction: row;
         flex-wrap: wrap;
+        gap:20px;
+       
+        * {
+          box-sizing: border-box;
+        }
+
+
     }
     .container-sidenav{
        // height: 250px;
         position: relative;
         transform: translate3d(0, -100%, 0);
+        ::ng-deep .mat-drawer-inner-container{
+          overflow: visible !important;
+        } 
     }
     .drawer-container {
         display: flex;
@@ -83,4 +93,9 @@ mat-slider{
       .mat-drawer-transition .mat-drawer-content{
         transition-property:transform,margin-top,margin-bottom;
       }
+  }
+
+  @media (max-width:550px){
+    mat-form-field, .search-form, .slider-cont{
+    width: -webkit-fill-available;}
   }

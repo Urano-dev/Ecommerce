@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { merge, of as observableOf, Subscription,Observable, Subject, startWith, switchMap, map, catchError, skip, debounceTime, } from 'rxjs';
 import { UtilsService } from 'src/app/services/utils.service';
 import { FilterShop } from 'src/app/services/models/filter';
@@ -40,27 +40,38 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   categories: Category[];
   brands:Brand[]
   selectedOrder = "4"
+  category = ''
   @ViewChild(NgForm) filterForm: NgForm;
 
   constructor(
     private _product:ProductsService, private router: Router,
     private snackBar: MatSnackBar,
     private _router: Router,
+    private _actRoute:ActivatedRoute,
     private _utils: UtilsService
   ){}
 
 ngOnInit() {
 
-  this._utils.getAllCategories().then(
+  this._utils.getAllCategories()
+  .then(
     res=> this.categories=res
   ).catch(
     err=> this.snackBar.open(Constants.ERROR_COMM)
   )
+  
   this._utils.getAllBrands().then(
     res=> this.brands=res
   ).catch(
     err=> this.snackBar.open(Constants.ERROR_COMM)
   )
+  
+  this._actRoute.params.subscribe(
+    (param) => {
+      this.category = param['category'];
+      if(this.category) {} // esperar a que estén las listas de categorías y hacer un find. 
+    }
+  );
 
 
   this.filter.order='createdAt'
@@ -86,7 +97,7 @@ ngOnInit() {
           this.filter.length=this.paginator.pageSize
           if(!this.filter.orderAsc) delete this.filter.orderAsc
           console.log(this.filter)
-          return this._product.getAllFiltered(this.filter);
+          return this._product.getProducts(this.filter);
         }),
         map(data => {
           this.isLoadingResults = false;

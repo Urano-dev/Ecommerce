@@ -16,36 +16,46 @@ export class ProductsService {
 
 
   constructor(private http:HttpClient) { }
-
-
-  public getAll():Observable<Product[]>{
-    return this.http.get<any>(this.URL_API + 'products')
+/*
+  * Trae lista de productos
+  * @param filter : Filtro de productos
+  */
+getProducts (filter?:FilterShop){
+  let query = ''
+  if(filter){
+  for (const property in filter) {
+    if(filter[property]){
+      if(query== '') { query+='?'}else {query+='&'} 
+      query += `${property}=${filter[property]}`
+    }
   }
+}
 
-  public getAllLimit(number:number):Observable<any[]>{
-    return this.http.get<any>(this.URL_API + 'products'+`?quantity=${number}`)
-  }
+  return this.http.get<any>(this.URL_API + 'products'+ query)
+}
+
+
+/*
+* Trae un producto
+* @param id : id de productos
+*/
+public getOne(id:any){
+  return this.http.get<Product>(this.URL_API + 'products/'+id)
+}
   
-  public getAllByCategory(categoryId:string):Observable<any[]>{
-    return this.http.get<any>(this.URL_API + 'products'+`?categoryId=${categoryId}`)
-  }
-
-
-  public getLatest(){
-    return this.http.get<any>(this.URL_API + 'products') // FALTA RUTA ------------------------------------------
-  }
-
-// Trae un producto
-  public getOne(id:any){
-    return this.http.get<any>(this.URL_API + 'products/'+id)
-  }
-  
-  //crea un producto nuevo
+  /*
+  * Crea un producto nuevo 
+  * @param Product : Filtro de productos
+  */
   public create(product:Product ){
     return this.http.post<any>(this.URL_API + 'products', product)
   }
   
-  //Actualiza un producto, requiere id de producto y un objeto con los contenidos
+  /*
+  * Actualiza un producto 
+  * @param productUpd : contenido de producto
+  * @param id : Id del producto a actualizar
+  */
   public updateOne(productUpd:Product, id:string){
     return this.http.patch<any>(this.URL_API+`products/${id}`, productUpd)
   }
@@ -57,23 +67,13 @@ export class ProductsService {
   }
 
 
-  // FALTA RUTAS CON QUERYS
   
-  public getAllFiltered (filter:FilterShop){
-    let query = ''
-    for (const property in filter) {
-      if(filter[property]){
-        if(query== '') { query+='?'}else {query+='&'} 
-        query += `${property}=${filter[property]}`
-      }
-    }
-    console.log(query)
-    return this.http.get<any>(this.URL_API + 'products'+ query)
-  }
+
 
   public createTestProducts (product:Product){
     return this.http.post<any>(this.URL_API + 'products?multiples=true', product)
   }
+
 }
 
 

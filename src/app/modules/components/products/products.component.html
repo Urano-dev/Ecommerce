@@ -18,7 +18,7 @@
     <!-- <form role="search" >
         <mat-input class="form-control" type="search" placeholder="Search" aria-label="Search" (input)="changeFilterText($event)" [(ngModel)]="this.filter.freeText">
     </form> -->
-    <form #filterForm="ngForm">
+    <form #filterForm="ngForm" class="search-form">
     <mat-form-field class="example-form-field">
         <mat-label>Search</mat-label>
         <input matInput type="text" name="filter" [(ngModel)]="filter.freeText">
@@ -51,7 +51,8 @@
 
         </mat-select>
       </mat-form-field>
-      <div class="d-flex justify-content-center">
+
+      <div class="d-flex justify-content-center slider-cont">
 
         <mat-slider min="0" max="500" step="10" discrete [displayWith]="formatLabel">
           <input value="0" matSliderStartThumb (change)="sliderMinChanged($event)">

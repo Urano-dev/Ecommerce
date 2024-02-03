@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   }
 
 
-    this._products.getAllFiltered(filter).subscribe(
+    this._products.getProducts(filter).subscribe(
       res=>{this.products=res; console.log(res)},
       err=>{console.log(err)}
     )

@@ -51,9 +51,10 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" routerLinkActive="active-link" routerLink="shop" aria-expanded="false">Shop</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" routerLink="shop/categoria1">Categoría 1</a></li>
-            <li><a class="dropdown-item" routerLink="shop/categoria2">Categoría 2</a></li>
-            <li><a class="dropdown-item" routerLink="shop/categoria2">Categoría 3</a></li>
+            @for (cat of categories; track $index) {
+              <li><a class="dropdown-item"  [routerLink]="'shop/'+ cat.name">{{cat.name}}</a></li>
+            }
+
           </ul>
         </li>
         <li class="nav-item">

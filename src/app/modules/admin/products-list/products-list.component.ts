@@ -29,7 +29,7 @@ export class ProductsListComponent implements OnInit {
     public dialog:MatDialog){}
   
   ngOnInit(): void {
-    this._products.getAll().subscribe(
+    this._products.getProducts(null).subscribe(
       res=>{ 
         this.waiting=false
         this.products=res.sort((a:any, b:any) => a.id - b.id)
