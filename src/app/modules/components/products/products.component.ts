@@ -12,13 +12,14 @@ import { Brand, Category } from 'src/app/services/models/utils';
 import { ProductsService } from 'src/app/services/products.service';
 import { Constants } from 'src/environments/app.setings';
 import { MatSliderChange, MatSliderDragEvent } from '@angular/material/slider';
+import { GrouperService } from 'src/app/services/product-groupers.service';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit, AfterViewInit {
+export class ProductsComponent implements OnInit {
   
   subs: Subscription;
   refresh = new EventEmitter();
@@ -48,46 +49,51 @@ export class ProductsComponent implements OnInit, AfterViewInit {
     private snackBar: MatSnackBar,
     private _router: Router,
     private _actRoute:ActivatedRoute,
-    private _utils: UtilsService
+    private _utils: UtilsService,
+    private _groupers:GrouperService
   ){}
 
-ngOnInit() {
-
-  this._utils.getAllCategories()
-  .then(
-    res=> this.categories=res
-  ).catch(
-    err=> this.snackBar.open(Constants.ERROR_COMM)
-  )
-  
-  this._utils.getAllBrands().then(
-    res=> this.brands=res
-  ).catch(
-    err=> this.snackBar.open(Constants.ERROR_COMM)
-  )
-  
-  this._actRoute.params.subscribe(
-    (param) => {
-      this.category = param['category'];
-      if(this.category) {} // esperar a que estén las listas de categorías y hacer un find. 
-    }
-  );
-
-
-  this.filter.order='createdAt'
-  this.filter.orderAsc=false
-  this.filter.freeText=''
-  this.filter.costMin=null
-  this.filter.costMax=null
-  this.filter.brandId=null
-  this.filter.categoryId=null
+async ngOnInit() {
 
   this.checkDevice();
 
-}
+  //pide lista de categorías y marcas
+  try {
+    this.categories = await this._groupers.getGrouper(2)
+    this.brands = await this._groupers.getGrouper(1)
+
+    this._actRoute.params.subscribe((param) => {
+        this.category = param['category'];
+        console.log(this.category)
+        if(this.category) {
+         const res =  this.categories.find((cat)=> cat.name==this.category)
+         this.filter.CategoryId=res.id
+         this.filter.order='createdAt'
+        this.filter.orderAsc=false
+        this.filter.freeText=''
+        this.filter.costMin=null
+        this.filter.costMax=null
+        this.filter.BrandId=null
+        }else{
+          this.filter.CategoryId=null
+          this.filter.order='createdAt'
+          this.filter.orderAsc=false
+          this.filter.freeText=''
+          this.filter.costMin=null
+          this.filter.costMax=null
+          this.filter.BrandId=null
+        }
+      }
+    );
+  } 
+  catch{this.snackBar.open(Constants.ERROR_COMM)}
+ 
+
+ 
 
 
-  ngAfterViewInit() {
+
+  
     this.subs = merge(this.paginator.page, this.filterForm.valueChanges.pipe(skip(1), debounceTime(500)), this.refresh) //this.paginator.pageSize, 
       .pipe(
         startWith({}),
@@ -96,27 +102,30 @@ ngOnInit() {
           this.filter.from =this.paginator.pageIndex? this.paginator.pageIndex * this.paginator.pageSize: '0',
           this.filter.length=this.paginator.pageSize
           if(!this.filter.orderAsc) delete this.filter.orderAsc
-          console.log(this.filter)
           return this._product.getProducts(this.filter);
+
         }),
         map(data => {
           this.isLoadingResults = false;
           this.resultsLength = data.recordsCount;
           return data
         }),
-  
-        catchError(() => {
+        catchError((err) => {
+          console.log(err)
           this.isLoadingResults = false
           this.snackBar.open(Constants.ERROR_COMM);
           return observableOf([]);
         })
+
     ).subscribe(data => {
         console.log(data)
         this.data = data as IncomingProduct[]
       });
   
-  
+
+      
     }
+    
 
 
     changeFilterOrder($ev:any){
@@ -150,11 +159,11 @@ ngOnInit() {
     }
    
     changeFilterCategory($event:any){
-      this.filter.categoryId=$event?$event:null
+      this.filter.CategoryId=$event?$event:null
       this.refresh.emit()      
     }
     changeFilterBrand($event:any){
-      this.filter.brandId=$event?$event:null
+      this.filter.BrandId=$event?$event:null
       this.refresh.emit()      
     }
 

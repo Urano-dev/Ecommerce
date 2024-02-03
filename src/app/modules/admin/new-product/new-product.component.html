@@ -3,7 +3,7 @@
 
 
 
-        <form (ngSubmit)="onCreate()" ngNativeValidate #f="ngForm" [formGroup]="newProductForm" class=" row">
+        <form (ngSubmit)="onCreate()"  #f="ngForm" [formGroup]="newProductForm" class=" row">
 
             <div class="col-12 col-sm-4">
 
@@ -16,32 +16,51 @@
             </div>
 
             <div class="col-12 col-sm-8">
-                <h2 class="mb-3">New Product</h2>
+                <h2 class="mb-3">{{title}}</h2>
 
-                <input class="form-control campo-form" type="text" placeholder="Name" aria-label="name" name="name"
-                    formControlName="name" required>
+                <mat-form-field class="input-full-width">
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="name of the product" formControlName="name">
+                  </mat-form-field>
 
-                <input class="form-control campo-form" type="text" placeholder="Description" aria-label="description"
-                    name="description" formControlName="description" required>
+                  <mat-form-field class="input-full-width">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput placeholder="Description of the product" formControlName="description"></textarea>
+                  </mat-form-field>
                 
-                    <select class="form-select campo-form" placeholder="Brand Name" aria-label="brand"
-                    name="brand" formControlName="brand" required>
-                    <option value="" selected disabled>Select Brand</option>
+                      <mat-form-field class="input-full-width">
+                        <mat-label>Brand</mat-label>
+                        <mat-select formControlName="brandId">
+                            <mat-option value="" selected disabled>Select Brand</mat-option>
+                            @for (brand of brands; track brand) {
+                                <mat-option [value]="brand.id">{{brand.name}}</mat-option>
+                            }
+                        </mat-select>
+                      </mat-form-field>
 
-                        <option value="brandId1">Brand 1</option>
-                        <option value="brandId2">Brand 2</option>
-                        <option value="brandId3">Brand 3</option>
-                        <option value="brandId4">Brand 4</option>
-                      </select>
-
+                      <mat-form-field class="input-full-width">
+                        <mat-label>Category</mat-label>
+                        <mat-select formControlName="categoryId">
+                            <mat-option value="" selected disabled>Select Categroy</mat-option>
+                            @for (category of categories; track category) {
+                                <mat-option [value]="category.id">{{category.name}}</mat-option>
+                            }
+                        </mat-select>
+                      </mat-form-field>
          
+             <div class="d-flex gap-3">
+                    <mat-form-field class="input-full-width">
+                        <mat-label>Stock</mat-label>
+                        <input type="number" matInput placeholder="Stock of the product" formControlName="stock">
+                      </mat-form-field>
 
-                <input class="form-control campo-form" type="number" placeholder="Stock" aria-label="stock" name="stock"
-                    formControlName="stock" required>
 
-                <input class="form-control campo-form" type="number" placeholder="cost" aria-label="cost" name="cost"
-                    formControlName="cost" required>
-
+                  <mat-form-field class="input-full-width">
+                    <mat-label>Cost</mat-label>
+                    <span matTextPrefix>$ &nbsp;</span>
+                    <input type="number" matInput placeholder="Cost of the product" formControlName="cost">
+                  </mat-form-field>
+            </div>
                     <button type="submit" class="btn-styled mt-3">Create Product</button>
 
             </div>

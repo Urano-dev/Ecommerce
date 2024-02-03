@@ -3,7 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from 'src/app/services/auth.service';
-import { GrouperService } from 'src/app/services/brand.service';
+import { GrouperService } from 'src/app/services/product-groupers.service';
 import { Category } from 'src/app/services/models/utils';
 import { Constants } from 'src/environments/app.setings';
 

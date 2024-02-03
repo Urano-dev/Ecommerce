@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OrdersComponent } from './orders/orders.component';
 import { NewProductComponent } from './new-product/new-product.component';
-import { EditProductComponent } from './edit-product/edit-product.component';
 import { StatsComponent } from './stats/stats.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminRoutingModule } from './admin-routing.module';
@@ -15,13 +14,13 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
 import { SharedModule } from '../shared/shared.module';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
   declarations: [
     OrdersComponent,
     NewProductComponent,
-    EditProductComponent,
     StatsComponent,
     DashboardComponent,
     ProductsListComponent
@@ -36,7 +35,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatTableModule,
     MatInputModule,
     MatFormFieldModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSelectModule,
   ]
 })
 export class AdminModule { }

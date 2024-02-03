@@ -49,12 +49,12 @@ getGrouper (grouper:number){
       return this.http.delete<boolean>(this.URL_API + `${Groupers[grouper]}/${id}`).toPromise()
     }
 
-    /*
+
+  /*
   * Actualiza un agrupador
   * @param grouper = 1 | brand / 2 | Category
   * @param body = contenido del agrupador
   */
-
     updateGrouper (grouper:number, body:Category|Brand){
       return this.http.patch<boolean>(this.URL_API + `${Groupers[grouper]}/${body.id}`, body).toPromise()
     }
@@ -64,6 +64,6 @@ getGrouper (grouper:number){
 
 
 export enum Groupers{
-  brand=1,
+  brands=1,
   categories = 2 
 }

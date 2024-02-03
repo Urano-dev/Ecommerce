@@ -78,8 +78,7 @@ import { Constants } from 'src/environments/app.setings';
     MatIconModule,
     MatSidenavModule,
     MatSliderModule,
-    MatCardModule,
-
+    MatCardModule
   ],
   providers: [CookieService,
       //{ provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: Constants.TOOLTIP_DEFAULTS },

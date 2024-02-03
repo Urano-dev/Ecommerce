@@ -15,8 +15,8 @@ export class FilterShop {
     freeText:string;
     order?: string;
     orderAsc?: boolean;
-    categoryId:number
-    brandId:number
+    CategoryId:number
+    BrandId:number
     costMin:number
     costMax:number
 }

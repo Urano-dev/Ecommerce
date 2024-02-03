@@ -19,8 +19,8 @@ export class HomeComponent implements OnInit {
       length: 8,
       freeText:'',
       order: 'createdAt',
-      categoryId:null,
-      brandId:null,
+      CategoryId:null,
+      BrandId:null,
       costMin:null,
       costMax:null,
   }
