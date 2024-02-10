@@ -31,7 +31,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatCardModule} from '@angular/material/card';
-
+import {MatMenuModule} from '@angular/material/menu';
 
 import { TermsComponent } from './modules/components/terms/terms.component';
 import { MatInputModule } from '@angular/material/input';
@@ -78,7 +78,8 @@ import { Constants } from 'src/environments/app.setings';
     MatIconModule,
     MatSidenavModule,
     MatSliderModule,
-    MatCardModule
+    MatCardModule,
+    MatMenuModule
   ],
   providers: [CookieService,
       //{ provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: Constants.TOOLTIP_DEFAULTS },

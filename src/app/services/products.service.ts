@@ -40,7 +40,7 @@ export class ProductsService {
    * Trae un producto
    * @param id : id de productos
    */
-  public getOne(id: any) {
+  public getOne(id: any):Promise<Product> {
     return this.http.get<Product>(this.URL_API + 'products/' + id).toPromise();
   }
 

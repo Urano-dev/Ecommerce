@@ -30,7 +30,7 @@
                 
                       <mat-form-field class="input-full-width">
                         <mat-label>Brand</mat-label>
-                        <mat-select formControlName="brandId">
+                        <mat-select formControlName="BrandId">
                             <mat-option value="" selected disabled>Select Brand</mat-option>
                             @for (brand of brands; track brand) {
                                 <mat-option [value]="brand.id">{{brand.name}}</mat-option>
@@ -40,7 +40,7 @@
 
                       <mat-form-field class="input-full-width">
                         <mat-label>Category</mat-label>
-                        <mat-select formControlName="categoryId">
+                        <mat-select formControlName="CategoryId">
                             <mat-option value="" selected disabled>Select Categroy</mat-option>
                             @for (category of categories; track category) {
                                 <mat-option [value]="category.id">{{category.name}}</mat-option>
@@ -61,7 +61,7 @@
                     <input type="number" matInput placeholder="Cost of the product" formControlName="cost">
                   </mat-form-field>
             </div>
-                    <button type="submit" class="btn-styled mt-3">Create Product</button>
+                    <button type="submit" class="btn-styled mt-3">{{productId?'Update Product':'Create Product'}}</button>
 
             </div>
 

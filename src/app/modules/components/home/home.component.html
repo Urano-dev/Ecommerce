@@ -20,16 +20,13 @@
             <figure class="effect-goliath">
                 <img [src]="product.img" alt="{{product.description}}" class="product_img"/>
                 <figcaption>
-                    <h2>{{product.name | titlecase}}</h2>
+                    <h2 class="text-center">{{product.name | titlecase}}</h2>
 
                         <p class="text-center">$ {{product.cost}}</p>
 
                     <a routerLink="details/{{product.id}}"></a>
                 </figcaption>			
             </figure>
-
-
-
             <!-- <div class="product-info">
                 <p>{{product.description}}</p>
             </div> -->
