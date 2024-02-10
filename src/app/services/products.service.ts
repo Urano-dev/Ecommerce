@@ -72,4 +72,8 @@ export class ProductsService {
       product
     );
   }
+
+  deleteProduct(productId:number){
+    return this.http.delete<any>(this.URL_API + `products/${productId}`).toPromise()
+  }
 }

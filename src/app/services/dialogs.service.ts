@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ConfirmDialogComponent } from '../modules/shared/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,12 @@ import { MatDialog } from '@angular/material/dialog';
 export class DialogsService {
   constructor(public dialog: MatDialog) {}
 
-  openDialog(title: string, message: string, button: string, cb?: any) {
+    /*
+    *@param title = tittle of the box
+    *@param message = content of the message
+    *@param button = content of the button
+    */
+  openDialog(title: string, message: string, button: string): Observable<boolean> {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
         title: title,
@@ -18,15 +24,8 @@ export class DialogsService {
       maxWidth: '450px',
     });
 
-    dialogRef.afterClosed().subscribe((result: any) => {
-      this.reintentar();
-
-      if (result) {
-        cb ? cb() : '';
-      }
-    });
-  }
-  reintentar() {
-    throw new Error('Method not implemented.');
-  }
+    return dialogRef.afterClosed().pipe( 
+        map(result => {
+              return result;
+            }))}
 }

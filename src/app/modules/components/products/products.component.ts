@@ -87,12 +87,6 @@ async ngOnInit() {
     );
   } 
   catch{this.snackBar.open(Constants.ERROR_COMM)}
- 
-
- 
-
-
-
   
     this.subs = merge(this.paginator.page, this.filterForm.valueChanges.pipe(skip(1), debounceTime(500)), this.refresh) //this.paginator.pageSize, 
       .pipe(
@@ -119,6 +113,7 @@ async ngOnInit() {
 
     ).subscribe(data => {
         console.log(data)
+        this.isLoadingResults=false
         this.data = data as IncomingProduct[]
       });
   

@@ -34,7 +34,7 @@
       </mat-form-field>
     </form>
 
-    <mat-form-field>
+    <mat-form-field *ngIf="!category">
         <mat-label>Categories</mat-label>
         <mat-select (valueChange)="changeFilterCategory($event)" name="category" id="category">
             <mat-option value="">All</mat-option>
@@ -67,7 +67,7 @@
 <mat-drawer-content>
 <section class="container-fluid d-flex flex-column justify-content-center product-container h-100">
 
-  @if(!data){
+  @if(isLoadingResults){
     <span class="text-center">Loading Products...</span>
 
   }@else {
@@ -76,15 +76,14 @@
         <mat-icon>menu</mat-icon>
       </button>
     </div>
-    <div class="row p-4" *ngIf="data">
+    <div class="row p-4" *ngIf="data.length>0">
 
 <!-- PRODUCTS -->
       <div class="col-12 col-sm-6 col-md-4 col-lg-3 product py-3" *ngFor="let product of data">
           
         <div class="card product-card" (click)="goToDetail(product.id)">
-          <img src="https://picsum.photos/200" class="card-img-top product_img" alt="{{product.description}}">  
-          <!-- [src]="product.img" -->
-
+          <img [src]="product.img"  class="card-img-top product_img" alt="{{product.description}}">  
+          
           <div class="product-category" *ngIf="product.Category">
             <span >{{product.Category.name}}</span>
           </div>
@@ -102,12 +101,14 @@
 <!-- END PRODUCTS -->
 
   </div>
+  <div class="row p-4" *ngIf="data.length==0">
 
-  }
+    <!-- NO PRODUCTS -->
+         No products {{category? 'in category "'+category+'"' :''}}
+    <!-- PRODUCTS -->
     
-
-
-   
+      </div>
+  }
 
     <mat-paginator [length]="resultsLength" [pageSize]="10"
                    [pageSizeOptions]="[5, 10, 25, 100]" class="background-paginator">

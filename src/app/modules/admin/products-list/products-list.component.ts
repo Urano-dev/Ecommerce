@@ -6,6 +6,8 @@ import { Product } from 'src/app/services/models/new-product';
 import { ProductsService } from 'src/app/services/products.service';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { DialogsService } from 'src/app/services/dialogs.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -25,30 +27,32 @@ export class ProductsListComponent implements OnInit {
   products!:Array<Product>
 
 
-  constructor( private _products:ProductsService,
-    public dialog:MatDialog){}
+  constructor( 
+    private _products:ProductsService,
+    private snackBar:MatSnackBar,
+    public _dialog:DialogsService){}
   
   ngOnInit(): void {
-    this._products.getProducts(null).subscribe(
-      res=>{ 
-        this.waiting=false
-        this.products=res.sort((a:any, b:any) => a.id - b.id)
-      // TABLA DE MATERIAL
-      this.dataSource = new MatTableDataSource(this.products);
-      this.dataSource.sort = this.sort;
-    
-    },err=>{console.error(err)}
-    )
+    this.getData()
   }
 
-
+getData(){
+  this._products.getProducts(null).subscribe(
+    res=>{ 
+      this.waiting=false
+      this.products=res.sort((a:any, b:any) => a.id - b.id)
+    // TABLA DE MATERIAL
+    this.dataSource = new MatTableDataSource(this.products);
+    this.dataSource.sort = this.sort;
   
-
+  },err=>{console.error(err)}
+  )
+}
+  
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
 
   check(element:any, event: MatCheckboxChange) {
       
@@ -100,7 +104,17 @@ checkOne(product:Product){
 }
 
 deleteProduct(id:number){
-  this.openDialog('Delete Product', 'Are you sure you want to delete this product?', 'ok')
+  this._dialog.openDialog('Delete Product', 'Are you sure you want to delete this product?', 'ok')
+  .subscribe(
+    res => { if(res){
+      this._products.deleteProduct(id)
+      .then(res=>{
+        this.snackBar.open(res)
+        this.getData()
+      })
+      .catch((err)=> this.snackBar.open(err.message))
+    }},
+  )
 }
 
 sendBulk(){
@@ -108,23 +122,6 @@ sendBulk(){
   selected.forEach(prod => { delete prod.selected})
   console.log(selected)
   //this._products.updateBulk(selected)
-}
-
-openDialog(title:string, message:string, button:string){
-
-  const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data:{
-        title: title,
-        message:message,
-        button: button
-      }, 
-      maxWidth: '450px'
-  });
-
-  dialogRef.afterClosed().subscribe(result => {
-    if(result) {}
-    //reset
-  });
 }
 
 }
